@@ -8,4 +8,4 @@ Credits:
 > 
 > App icon from https://www.flaticon.com/authors/bqlqn
 
-![alt text](https://raw.githubusercontent.com/ionite34/SynthUtil/main/example.png)
+![alt text](https://raw.githubusercontent.com/Athena-6/SynthUtil/main/example.png)
