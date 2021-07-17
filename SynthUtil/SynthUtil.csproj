@@ -94,7 +94,9 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form_Tab2Settings.cs" />
+    <Compile Include="Form_Tab2Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form_Tab2Settings.Designer.cs">
       <DependentUpon>Form_Tab2Settings.cs</DependentUpon>
     </Compile>
@@ -105,7 +107,9 @@
     <Compile Include="Form_Main.Designer.cs">
       <DependentUpon>Form_Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form_FileValidate.cs" />
+    <Compile Include="Form_FileValidate.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form_FileValidate.Designer.cs">
       <DependentUpon>Form_FileValidate.cs</DependentUpon>
     </Compile>

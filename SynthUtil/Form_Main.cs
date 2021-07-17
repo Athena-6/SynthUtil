@@ -17,25 +17,33 @@ namespace SynthUtil
 {
     public partial class form_main : Form
     {
+        //Tab 1 Stages
         private bool stage1confirm;
         private bool stage2confirm;
         private bool stage3confirm;
 
+        //Tab 1 Button States
         private bool uiStore1;
         private bool uiStore2;
         private bool uiStore3;
         private bool uiStore4;
 
+        //Global Paths
         private string suFolderPath;
         private string suCSVPath;
         private string tbcTextUnconfirmed = "Unconfirmed";
 
+        //Global Lists
         private List<string> getFiles = new List<string>();
         private List<string> getDirectory = new List<string>();
         private List<string> getFilesNoExt = new List<string>();
         private List<int> wavLength = new List<int>();
 
+        //Temp settings (resets on restart)
         public bool setting_Overwrite = false;
+
+        //Tab 2 DataTable
+        private DataTable csvData = new DataTable();
 
         public form_main()
         {
@@ -63,10 +71,33 @@ namespace SynthUtil
 
             InitializeComponent();
 
+            InitializeTasks();
+        }
+
+        private void InitializeTasks()
+        {
+            //For Tab 1
             button2.Enabled = false;
             button3.Enabled = false;
             textboxConfirm.Enabled = false;
             textboxConfirm.Text = tbcTextUnconfirmed;
+
+            //For Tab 2
+            //Settings Group 1
+            checkedListBoxT2G1.SetItemChecked(0, Properties.Settings.Default.t2ck_DelBetweenSymb);
+            checkedListBoxT2G1.SetItemChecked(1, Properties.Settings.Default.t2ck_DelSingleSymb);
+            //Settings Group 2
+            checkedListBoxT2G2.SetItemChecked(0, Properties.Settings.Default.t2ck_Symb1);
+            checkedListBoxT2G2.SetItemChecked(1, Properties.Settings.Default.t2ck_Symb2);
+            checkedListBoxT2G2.SetItemChecked(2, Properties.Settings.Default.t2ck_Symb3);
+            checkedListBoxT2G2.SetItemChecked(3, Properties.Settings.Default.t2ck_Symb4);
+            checkedListBoxT2G2.SetItemChecked(4, Properties.Settings.Default.t2ck_Symb5);
+            checkedListBoxT2G2.SetItemChecked(5, Properties.Settings.Default.t2ck_Symb6);
+            //Settings Group 3
+            checkedListBoxT2G3.SetItemChecked(0, Properties.Settings.Default.t2ck_CustomWordReplace);
+            //Settings Group 4
+            checkedListBoxT2G4.SetItemChecked(0, Properties.Settings.Default.t2ck_DelEmptyText);
+            checkedListBoxT2G4.SetItemChecked(1, Properties.Settings.Default.t2ck_DelEmptyVT);
         }
 
         private void StateUpdate()
@@ -165,7 +196,7 @@ namespace SynthUtil
             bool eventContinue = true;
             button2.Enabled = false;
             string folderName = Path.GetFileName(suFolderPath);
-            if (folderName.Contains(".esp") == false)
+            if (folderName.Contains(".esp") == false || folderName.Contains(".esl") == false || folderName.Contains(".esm") == false)
             {
                 String msgBoxText1 = @"The folder you have selected is not the mod.esp folder. " +
                 "The app can still attempt to index .wav files and continue processing, but note that " +
@@ -408,15 +439,21 @@ namespace SynthUtil
         // Tab 2
 
         // fileName should consist of the CSV file name with full path
-        private void LoadCSVOnDataGridView(string fileName)
+        private void LoadCSV(string fileName)
         {
             try
             {
+                //Creates object for ReadCSV Class
                 ReadCSV csv = new ReadCSV(fileName);
-
                 try
                 {
+                    //Sets datagrid view to result
                     dataGridView1.DataSource = csv.readCSV;
+                    //Clears local datatable, populates with result
+                    csvData.Clear();
+                    csvData = csv.readCSV;
+                    //Sets textbox to datatable rows
+                    textBox_lineCount.Text = "Lines: " + csvData.Rows.Count.ToString();
                 }
                 catch (Exception ex)
                 {
@@ -429,35 +466,97 @@ namespace SynthUtil
             }
         }
 
+        private void SaveCSV(string fileName)
+        {
+            try
+            {
+                csvData.ToCSV(fileName);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         private void button_load_Click(object sender, EventArgs e)
         {
+            //For LOAD file operation
             CommonOpenFileDialog dialog = new CommonOpenFileDialog();
             dialog.RestoreDirectory = true;
             dialog.IsFolderPicker = false;
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                suCSVPath = dialog.FileName;
-                textBox_csvPath.Text = suCSVPath;
+                try
+                {
+                    //Set Path
+                    suCSVPath = dialog.FileName;
+                    //Set textbox to Path
+                    textBox_csvPath.Text = suCSVPath;
+                    //Track to end of textbox
+                    textBox_csvPath.SelectionStart = textBox_csvPath.Text.Length;
+                    textBox_csvPath.SelectionLength = 0;
+
+                    //Lock UI, Wait cursor on
+                    Cursor.Current = Cursors.WaitCursor;
+                    this.Enabled = false;
+
+                    //Load operations
+                    LoadCSV(suCSVPath);
+                }
+                catch (Exception ex1)
+                {
+                    MessageBox.Show("Error loading csv: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //Clear path textbox
+                    textBox_csvPath.Text = "";
+                    return;
+                }
+                finally
+                {
+                    //Unlock UI, Wait cursor off
+                    Cursor.Current = Cursors.Default;
+                    this.Enabled = true;
+                }
+
+                button2_save.Enabled = true;
+            }
+        }
+
+        private void button_save_Click(object sender, EventArgs e)
+        {
+            //For SAVE file operation
+            SaveFileDialog sfdialog = new SaveFileDialog();
+            //Sets dialog properties
+            sfdialog.InitialDirectory = suCSVPath;
+            sfdialog.Filter = "CSV file (*.csv)|*.csv| All Files (*.*)|*.*";
+            sfdialog.FileName = Path.GetFileName(suCSVPath);
+            if (sfdialog.ShowDialog() == DialogResult.OK)
+            {
+                String tempCSVPath = sfdialog.FileName;
+                textBox_csvPath.Text = tempCSVPath;
+
                 //Track to end of textbox
                 textBox_csvPath.SelectionStart = textBox_csvPath.Text.Length;
                 textBox_csvPath.SelectionLength = 0;
 
                 try
                 {
-                    LoadCSVOnDataGridView(suCSVPath);
+                    //Lock UI, Wait cursor on
+                    Cursor.Current = Cursors.WaitCursor;
+                    this.Enabled = false;
+                    //Save operations
+                    SaveCSV(tempCSVPath);
                 }
                 catch (Exception ex1)
                 {
-                    MessageBox.Show("Error saving settings: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error saving csv: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    //Unlock UI, Wait cursor off
+                    Cursor.Current = Cursors.Default;
+                    this.Enabled = true;
                 }
             }
-        }
-
-        private void button_save_Click(object sender, EventArgs e)
-        {
-            WriteCSV wcsv = new WriteCSV(dataGridView1);
-            wcsv.SaveToCSV();
-
         }
 
         private void button2_settings_Click(object sender, EventArgs e)

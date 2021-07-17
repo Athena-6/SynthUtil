@@ -9,54 +9,46 @@ using System.Windows.Forms;
 
 namespace SynthUtil
 {
-    public class WriteCSV
+    public static class WriteCSV
     {
-        private DataGridView writeCSVDT;
-
-        public WriteCSV(DataGridView DGV_in)
+        public static void ToCSV(this DataTable dtDataTable, string strFilePath)
         {
-            writeCSVDT = DGV_in;
-        }
-
-        public void SaveToCSV()
-        {
-            DataGridView DGV = writeCSVDT;
-            string filename = "";
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "CSV (*.csv)|*.csv";
-            sfd.FileName = "Output.csv";
-            if (sfd.ShowDialog() == DialogResult.OK)
+            StreamWriter sw = new StreamWriter(strFilePath, false);
+            //headers    
+            for (int i = 0; i < dtDataTable.Columns.Count; i++)
             {
-                MessageBox.Show("Data will be exported and you will be notified when it is ready.");
-                if (File.Exists(filename))
+                sw.Write(dtDataTable.Columns[i]);
+                if (i < dtDataTable.Columns.Count - 1)
                 {
-                    try
-                    {
-                        File.Delete(filename);
-                    }
-                    catch (IOException ex)
-                    {
-                        MessageBox.Show("It wasn't possible to write the data to the disk." + ex.Message);
-                    }
+                    sw.Write(",");
                 }
-                int columnCount = DGV.ColumnCount;
-                string columnNames = "";
-                string[] output = new string[DGV.RowCount + 1];
-                for (int i = 0; i < columnCount; i++)
-                {
-                    columnNames += DGV.Columns[i].Name.ToString() + ",";
-                }
-                output[0] += columnNames;
-                for (int i = 1; (i - 1) < DGV.RowCount; i++)
-                {
-                    for (int j = 0; j < columnCount; j++)
-                    {
-                        output[i] += DGV.Rows[i - 1].Cells[j].Value.ToString() + ",";
-                    }
-                }
-                System.IO.File.WriteAllLines(sfd.FileName, output, System.Text.Encoding.UTF8);
-                MessageBox.Show("Your file was generated and its ready for use.");
             }
+            sw.Write(sw.NewLine);
+            foreach (DataRow dr in dtDataTable.Rows)
+            {
+                for (int i = 0; i < dtDataTable.Columns.Count; i++)
+                {
+                    if (!Convert.IsDBNull(dr[i]))
+                    {
+                        string value = dr[i].ToString();
+                        if (value.Contains(','))
+                        {
+                            value = String.Format("\"{0}\"", value);
+                            sw.Write(value);
+                        }
+                        else
+                        {
+                            sw.Write(dr[i].ToString());
+                        }
+                    }
+                    if (i < dtDataTable.Columns.Count - 1)
+                    {
+                        sw.Write(",");
+                    }
+                }
+                sw.Write(sw.NewLine);
+            }
+            sw.Close();
         }
     }
 }

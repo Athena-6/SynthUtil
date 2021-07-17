@@ -46,5 +46,137 @@ namespace SynthUtil.Properties {
                 this["proc_text"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool t2ck_DelBetweenSymb {
+            get {
+                return ((bool)(this["t2ck_DelBetweenSymb"]));
+            }
+            set {
+                this["t2ck_DelBetweenSymb"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool t2ck_DelSingleSymb {
+            get {
+                return ((bool)(this["t2ck_DelSingleSymb"]));
+            }
+            set {
+                this["t2ck_DelSingleSymb"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool t2ck_Symb1 {
+            get {
+                return ((bool)(this["t2ck_Symb1"]));
+            }
+            set {
+                this["t2ck_Symb1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool t2ck_Symb2 {
+            get {
+                return ((bool)(this["t2ck_Symb2"]));
+            }
+            set {
+                this["t2ck_Symb2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool t2ck_Symb3 {
+            get {
+                return ((bool)(this["t2ck_Symb3"]));
+            }
+            set {
+                this["t2ck_Symb3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool t2ck_Symb4 {
+            get {
+                return ((bool)(this["t2ck_Symb4"]));
+            }
+            set {
+                this["t2ck_Symb4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool t2ck_Symb5 {
+            get {
+                return ((bool)(this["t2ck_Symb5"]));
+            }
+            set {
+                this["t2ck_Symb5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool t2ck_Symb6 {
+            get {
+                return ((bool)(this["t2ck_Symb6"]));
+            }
+            set {
+                this["t2ck_Symb6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool t2ck_CustomWordReplace {
+            get {
+                return ((bool)(this["t2ck_CustomWordReplace"]));
+            }
+            set {
+                this["t2ck_CustomWordReplace"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool t2ck_DelEmptyText {
+            get {
+                return ((bool)(this["t2ck_DelEmptyText"]));
+            }
+            set {
+                this["t2ck_DelEmptyText"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool t2ck_DelEmptyVT {
+            get {
+                return ((bool)(this["t2ck_DelEmptyVT"]));
+            }
+            set {
+                this["t2ck_DelEmptyVT"] = value;
+            }
+        }
     }
 }

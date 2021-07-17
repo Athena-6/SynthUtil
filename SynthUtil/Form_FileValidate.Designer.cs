@@ -56,17 +56,17 @@ namespace SynthUtil
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(27, 84);
+            this.progressBar1.Location = new System.Drawing.Point(39, 95);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(452, 34);
+            this.progressBar1.Size = new System.Drawing.Size(500, 34);
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 1;
             // 
             // progressBar2
             // 
-            this.progressBar2.Location = new System.Drawing.Point(27, 153);
+            this.progressBar2.Location = new System.Drawing.Point(39, 161);
             this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(452, 34);
+            this.progressBar2.Size = new System.Drawing.Size(500, 34);
             this.progressBar2.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar2.TabIndex = 2;
             // 
@@ -74,7 +74,7 @@ namespace SynthUtil
             // 
             this.label_wav.AutoSize = true;
             this.label_wav.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_wav.Location = new System.Drawing.Point(23, 63);
+            this.label_wav.Location = new System.Drawing.Point(36, 71);
             this.label_wav.Name = "label_wav";
             this.label_wav.Size = new System.Drawing.Size(93, 21);
             this.label_wav.TabIndex = 3;
@@ -85,7 +85,7 @@ namespace SynthUtil
             // 
             this.label_lip.AutoSize = true;
             this.label_lip.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_lip.Location = new System.Drawing.Point(23, 132);
+            this.label_lip.Location = new System.Drawing.Point(35, 137);
             this.label_lip.Name = "label_lip";
             this.label_lip.Size = new System.Drawing.Size(81, 21);
             this.label_lip.TabIndex = 4;
@@ -109,19 +109,19 @@ namespace SynthUtil
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(27, 273);
+            this.textBox1.Location = new System.Drawing.Point(39, 283);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(452, 50);
+            this.textBox1.Size = new System.Drawing.Size(500, 50);
             this.textBox1.TabIndex = 5;
             // 
             // button1
             // 
             this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(186, 337);
+            this.button1.Location = new System.Drawing.Point(216, 356);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(128, 37);
+            this.button1.Size = new System.Drawing.Size(128, 42);
             this.button1.TabIndex = 6;
             this.button1.Text = "OK";
             this.button1.UseVisualStyleBackColor = true;
@@ -131,7 +131,7 @@ namespace SynthUtil
             // 
             this.label_v.AutoSize = true;
             this.label_v.Font = new System.Drawing.Font("Roboto", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_v.Location = new System.Drawing.Point(23, 206);
+            this.label_v.Location = new System.Drawing.Point(36, 203);
             this.label_v.Name = "label_v";
             this.label_v.Size = new System.Drawing.Size(94, 21);
             this.label_v.TabIndex = 7;
@@ -141,9 +141,9 @@ namespace SynthUtil
             // 
             // progressBar3
             // 
-            this.progressBar3.Location = new System.Drawing.Point(27, 227);
+            this.progressBar3.Location = new System.Drawing.Point(39, 227);
             this.progressBar3.Name = "progressBar3";
-            this.progressBar3.Size = new System.Drawing.Size(452, 34);
+            this.progressBar3.Size = new System.Drawing.Size(500, 34);
             this.progressBar3.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar3.TabIndex = 8;
             // 
@@ -158,7 +158,7 @@ namespace SynthUtil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(507, 386);
+            this.ClientSize = new System.Drawing.Size(578, 424);
             this.ControlBox = false;
             this.Controls.Add(this.progressBar3);
             this.Controls.Add(this.label_v);

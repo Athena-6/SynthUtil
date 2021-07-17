@@ -25,6 +25,7 @@ namespace SynthUtil
             {
                 Properties.Settings.Default.proc_voiceid = textBox1.Text;
                 Properties.Settings.Default.proc_text = textBox2.Text;
+                Properties.Settings.Default.Save();
             } 
             catch (Exception ex1)
             {

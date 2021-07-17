@@ -54,14 +54,17 @@ namespace SynthUtil
             this.button2_WordR = new System.Windows.Forms.Button();
             this.button2_ProcessData = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
+            this.checkedListBoxT2G4 = new System.Windows.Forms.CheckedListBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button2_save = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.checkedListBoxT2G1 = new System.Windows.Forms.CheckedListBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.button2_load = new System.Windows.Forms.Button();
+            this.checkedListBoxT2G2 = new System.Windows.Forms.CheckedListBox();
+            this.checkedListBoxT2G3 = new System.Windows.Forms.CheckedListBox();
+            this.textBox_lineCount = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -126,6 +129,7 @@ namespace SynthUtil
             // 
             // checkBox_overwrite
             // 
+            this.checkBox_overwrite.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.checkBox_overwrite.AutoSize = true;
             this.checkBox_overwrite.Location = new System.Drawing.Point(581, 452);
             this.checkBox_overwrite.Name = "checkBox_overwrite";
@@ -137,6 +141,7 @@ namespace SynthUtil
             // 
             // button3
             // 
+            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.button3.Enabled = false;
             this.button3.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Location = new System.Drawing.Point(400, 439);
@@ -149,6 +154,7 @@ namespace SynthUtil
             // 
             // label_process
             // 
+            this.label_process.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label_process.AutoSize = true;
             this.label_process.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_process.Location = new System.Drawing.Point(323, 386);
@@ -258,16 +264,19 @@ namespace SynthUtil
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.textBox_lineCount);
+            this.tabPage2.Controls.Add(this.checkedListBoxT2G3);
+            this.tabPage2.Controls.Add(this.checkedListBoxT2G2);
             this.tabPage2.Controls.Add(this.button2_settings);
             this.tabPage2.Controls.Add(this.textBox_csvPath);
             this.tabPage2.Controls.Add(this.button2_WordR);
             this.tabPage2.Controls.Add(this.button2_ProcessData);
             this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Controls.Add(this.checkedListBox2);
+            this.tabPage2.Controls.Add(this.checkedListBoxT2G4);
             this.tabPage2.Controls.Add(this.checkBox1);
             this.tabPage2.Controls.Add(this.button2_save);
             this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.checkedListBox1);
+            this.tabPage2.Controls.Add(this.checkedListBoxT2G1);
             this.tabPage2.Controls.Add(this.dataGridView1);
             this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.button2_load);
@@ -292,7 +301,7 @@ namespace SynthUtil
             // 
             this.textBox_csvPath.Location = new System.Drawing.Point(29, 445);
             this.textBox_csvPath.Name = "textBox_csvPath";
-            this.textBox_csvPath.Size = new System.Drawing.Size(564, 29);
+            this.textBox_csvPath.Size = new System.Drawing.Size(398, 29);
             this.textBox_csvPath.TabIndex = 42;
             // 
             // button2_WordR
@@ -323,23 +332,24 @@ namespace SynthUtil
             this.label3.TabIndex = 37;
             this.label3.Text = "Processing Step 2:";
             // 
-            // checkedListBox2
+            // checkedListBoxT2G4
             // 
-            this.checkedListBox2.FormattingEnabled = true;
-            this.checkedListBox2.Items.AddRange(new object[] {
+            this.checkedListBoxT2G4.CheckOnClick = true;
+            this.checkedListBoxT2G4.FormattingEnabled = true;
+            this.checkedListBoxT2G4.Items.AddRange(new object[] {
             "Delete lines with Empty Text",
             "Delete lines with Empty VoiceType"});
-            this.checkedListBox2.Location = new System.Drawing.Point(623, 343);
-            this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(289, 82);
-            this.checkedListBox2.TabIndex = 36;
+            this.checkedListBoxT2G4.Location = new System.Drawing.Point(623, 343);
+            this.checkedListBoxT2G4.Name = "checkedListBoxT2G4";
+            this.checkedListBoxT2G4.Size = new System.Drawing.Size(289, 82);
+            this.checkedListBoxT2G4.TabIndex = 36;
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(183, 22);
+            this.checkBox1.Location = new System.Drawing.Point(171, 21);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(214, 25);
             this.checkBox1.TabIndex = 35;
@@ -348,11 +358,12 @@ namespace SynthUtil
             // 
             // button2_save
             // 
-            this.button2_save.Location = new System.Drawing.Point(421, 13);
+            this.button2_save.Enabled = false;
+            this.button2_save.Location = new System.Drawing.Point(391, 12);
             this.button2_save.Name = "button2_save";
-            this.button2_save.Size = new System.Drawing.Size(74, 41);
+            this.button2_save.Size = new System.Drawing.Size(92, 41);
             this.button2_save.TabIndex = 34;
-            this.button2_save.Text = "Save";
+            this.button2_save.Text = "Export";
             this.button2_save.UseVisualStyleBackColor = true;
             this.button2_save.Click += new System.EventHandler(this.button_save_Click);
             // 
@@ -366,21 +377,17 @@ namespace SynthUtil
             this.label6.TabIndex = 33;
             this.label6.Text = "Processing Step 1:";
             // 
-            // checkedListBox1
+            // checkedListBoxT2G1
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "Del. between ( )",
-            "Del. between [ ]",
-            "Del. between <>",
-            "Del. single ( or )",
-            "Del. single [ or ]",
-            "Del. single < or >",
-            "Word replacements"});
-            this.checkedListBox1.Location = new System.Drawing.Point(623, 71);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(289, 186);
-            this.checkedListBox1.TabIndex = 32;
+            this.checkedListBoxT2G1.CheckOnClick = true;
+            this.checkedListBoxT2G1.FormattingEnabled = true;
+            this.checkedListBoxT2G1.Items.AddRange(new object[] {
+            "Del. between symbols",
+            "Del. single symbols"});
+            this.checkedListBoxT2G1.Location = new System.Drawing.Point(623, 71);
+            this.checkedListBoxT2G1.Name = "checkedListBoxT2G1";
+            this.checkedListBoxT2G1.Size = new System.Drawing.Size(199, 56);
+            this.checkedListBoxT2G1.TabIndex = 32;
             // 
             // dataGridView1
             // 
@@ -407,13 +414,47 @@ namespace SynthUtil
             // 
             // button2_load
             // 
-            this.button2_load.Location = new System.Drawing.Point(519, 13);
+            this.button2_load.Location = new System.Drawing.Point(501, 13);
             this.button2_load.Name = "button2_load";
-            this.button2_load.Size = new System.Drawing.Size(74, 41);
+            this.button2_load.Size = new System.Drawing.Size(92, 41);
             this.button2_load.TabIndex = 25;
-            this.button2_load.Text = "Load";
+            this.button2_load.Text = "Import";
             this.button2_load.UseVisualStyleBackColor = true;
             this.button2_load.Click += new System.EventHandler(this.button_load_Click);
+            // 
+            // checkedListBoxT2G2
+            // 
+            this.checkedListBoxT2G2.CheckOnClick = true;
+            this.checkedListBoxT2G2.FormattingEnabled = true;
+            this.checkedListBoxT2G2.Items.AddRange(new object[] {
+            "( )",
+            "[ ]",
+            "{ }",
+            "<>",
+            "\" \"",
+            "\' \'"});
+            this.checkedListBoxT2G2.Location = new System.Drawing.Point(829, 71);
+            this.checkedListBoxT2G2.Name = "checkedListBoxT2G2";
+            this.checkedListBoxT2G2.Size = new System.Drawing.Size(83, 160);
+            this.checkedListBoxT2G2.TabIndex = 44;
+            // 
+            // checkedListBoxT2G3
+            // 
+            this.checkedListBoxT2G3.CheckOnClick = true;
+            this.checkedListBoxT2G3.FormattingEnabled = true;
+            this.checkedListBoxT2G3.Items.AddRange(new object[] {
+            "Custom word replace"});
+            this.checkedListBoxT2G3.Location = new System.Drawing.Point(623, 134);
+            this.checkedListBoxT2G3.Name = "checkedListBoxT2G3";
+            this.checkedListBoxT2G3.Size = new System.Drawing.Size(200, 56);
+            this.checkedListBoxT2G3.TabIndex = 45;
+            // 
+            // textBox_lineCount
+            // 
+            this.textBox_lineCount.Location = new System.Drawing.Point(433, 445);
+            this.textBox_lineCount.Name = "textBox_lineCount";
+            this.textBox_lineCount.Size = new System.Drawing.Size(160, 29);
+            this.textBox_lineCount.TabIndex = 46;
             // 
             // form_main
             // 
@@ -462,14 +503,17 @@ namespace SynthUtil
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button2_save;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox checkedListBoxT2G1;
         private System.Windows.Forms.Button button2_ProcessData;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckedListBox checkedListBox2;
+        private System.Windows.Forms.CheckedListBox checkedListBoxT2G4;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button2_WordR;
         private System.Windows.Forms.TextBox textBox_csvPath;
         private System.Windows.Forms.Button button2_settings;
+        private System.Windows.Forms.CheckedListBox checkedListBoxT2G3;
+        private System.Windows.Forms.CheckedListBox checkedListBoxT2G2;
+        private System.Windows.Forms.TextBox textBox_lineCount;
     }
 }
 
