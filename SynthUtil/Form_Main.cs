@@ -43,34 +43,29 @@ namespace SynthUtil
         public bool setting_Overwrite = false;
 
         //Tab 2 DataTable
-        private DataTable csvData = new DataTable();
+        public DataTable csvData = new DataTable();
+
+        //Tab 3 Vars
+        private string t3SourcePath;
+        private string t3OutputPath;
+        private bool SourcePathLoaded;
+        private bool OutputPathLoaded;
 
         public form_main()
         {
-            //set application directory
-            String appPath = Directory.GetCurrentDirectory();
-
-            //check .dll exists
-            if (!System.IO.File.Exists(appPath + @"\TagLibSharp.dll"))
+            // Test if required .dll present
+            if (PrereqCheck.StartupTest() > 0)
             {
-                MessageBox.Show("Required files not present in app directory: 'TagLibSharp.dll'", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
+                Environment.Exit(0);
             }
 
-            if (!System.IO.File.Exists(appPath + @"\Microsoft.WindowsAPICodePack.dll"))
-            {
-                MessageBox.Show("Required files not present in app directory: 'Microsoft.WindowsAPICodePack.dll'", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-            }
+            //Test and create WordReplace.csv if not exist
+            PrereqCheck.CheckCreate_WR_CSV();
 
-            if (!System.IO.File.Exists(appPath + @"\Microsoft.WindowsAPICodePack.Shell.dll"))
-            {
-                MessageBox.Show("Required files not present in app directory: 'Microsoft.WindowsAPICodePack.Shell.dll'", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-            }
-
+            // System Tasks
             InitializeComponent();
 
+            // Program Tasks
             InitializeTasks();
         }
 
@@ -196,7 +191,7 @@ namespace SynthUtil
             bool eventContinue = true;
             button2.Enabled = false;
             string folderName = Path.GetFileName(suFolderPath);
-            if (folderName.Contains(".esp") == false || folderName.Contains(".esl") == false || folderName.Contains(".esm") == false)
+            if (folderName.Contains(".esp") == false && folderName.Contains(".esl") == false && folderName.Contains(".esm") == false)
             {
                 String msgBoxText1 = @"The folder you have selected is not the mod.esp folder. " +
                 "The app can still attempt to index .wav files and continue processing, but note that " +
@@ -239,7 +234,7 @@ namespace SynthUtil
                 getDirectory.Add(Path.GetDirectoryName(arrItem));
                 getFilesNoExt.Add(Path.GetFileNameWithoutExtension(arrItem));
                 filesIndex++;
-                int percentage = filesIndex * 100 / files.Length;
+                int percentage = ProgramTools.IntToPerc(filesIndex, files.Length);
                 backgroundWorker1.ReportProgress(percentage);
             }
         }
@@ -338,7 +333,8 @@ namespace SynthUtil
                     wavLength.Add(5);
                 }
 
-                int percentage = filesIndex * 100 / getFiles.Count;
+                int percentage = ProgramTools.IntToPerc(filesIndex, getFiles.Count);
+                Console.WriteLine(percentage);
                 backgroundWorker2.ReportProgress(percentage);
             }
         }
@@ -375,7 +371,7 @@ namespace SynthUtil
 
                 filesIndex++;
 
-                int percentage = filesIndex * 100 / getFiles.Count;
+                int percentage = ProgramTools.IntToPerc(filesIndex, getFiles.Count);
                 backgroundWorker3.ReportProgress(percentage);
             }
         }
@@ -447,11 +443,12 @@ namespace SynthUtil
                 ReadCSV csv = new ReadCSV(fileName);
                 try
                 {
-                    //Sets datagrid view to result
-                    dataGridView1.DataSource = csv.readCSV;
                     //Clears local datatable, populates with result
                     csvData.Clear();
-                    csvData = csv.readCSV;
+                    //Sets local datatable to readCSV var in external class
+                    csvData = csv.DT_ReadCSV;
+                    //Sets datagrid view to result
+                    dataGridView1.DataSource = csvData;
                     //Sets textbox to datatable rows
                     textBox_lineCount.Text = "Lines: " + csvData.Rows.Count.ToString();
                 }
@@ -501,7 +498,7 @@ namespace SynthUtil
                     this.Enabled = false;
 
                     //Load operations
-                    LoadCSV(suCSVPath);
+                    LoadCSV(suCSVPath);     
                 }
                 catch (Exception ex1)
                 {
@@ -573,6 +570,220 @@ namespace SynthUtil
                 //Do nothing
             }
             fDialog.Dispose();
+        }
+
+        private void button2_WordR_Click(object sender, EventArgs e)
+        {
+            Form_ProcessingSettings fDialog = new Form_ProcessingSettings();
+
+            if (fDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                //Do nothing
+            }
+            else
+            {
+                //Do nothing
+            }
+
+            fDialog.Dispose();
+        }
+
+        private void button2_ProcessData_Click(object sender, EventArgs e)
+        {
+            Form_Processing fDialog = new Form_Processing();
+
+            //Write temp
+            ProgramTools.WriteTempCSV(csvData);
+
+            if (fDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                try
+                {
+                    String appPath = Directory.GetCurrentDirectory();
+                    String csvPath = appPath + @"\SynthUtil_Temp.csv";
+                    //Load CSV
+                    LoadCSV(csvPath);
+                }
+                catch (Exception ex1)
+                {
+                    MessageBox.Show("Error reading processed data: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                //Do nothing
+            }
+
+            fDialog.dataSource.Clear();
+            fDialog.Dispose();
+        }
+
+        private void checkedListBoxT2G1_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            CheckedListBox clb = (CheckedListBox)sender;
+            // Switch off event handler
+            clb.ItemCheck -= checkedListBoxT2G1_ItemCheck;
+            clb.SetItemCheckState(e.Index, e.NewValue);
+
+            try
+            {
+                Properties.Settings.Default.t2ck_DelBetweenSymb = checkedListBoxT2G1.GetItemChecked(0);
+                Properties.Settings.Default.t2ck_DelSingleSymb = checkedListBoxT2G1.GetItemChecked(1);
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception ex1)
+            {
+                MessageBox.Show("Error saving settings: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            // Switch on event handler
+            clb.ItemCheck += checkedListBoxT2G1_ItemCheck;
+        }
+
+        private void checkedListBoxT2G2_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            CheckedListBox clb = (CheckedListBox)sender;
+            // Switch off event handler
+            clb.ItemCheck -= checkedListBoxT2G2_ItemCheck;
+            clb.SetItemCheckState(e.Index, e.NewValue);
+
+            try
+            {
+                Properties.Settings.Default.t2ck_Symb1 = checkedListBoxT2G2.GetItemChecked(0);
+                Properties.Settings.Default.t2ck_Symb2 = checkedListBoxT2G2.GetItemChecked(1);
+                Properties.Settings.Default.t2ck_Symb3 = checkedListBoxT2G2.GetItemChecked(2);
+                Properties.Settings.Default.t2ck_Symb4 = checkedListBoxT2G2.GetItemChecked(3);
+                Properties.Settings.Default.t2ck_Symb5 = checkedListBoxT2G2.GetItemChecked(4);
+                Properties.Settings.Default.t2ck_Symb6 = checkedListBoxT2G2.GetItemChecked(5);
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception ex1)
+            {
+                MessageBox.Show("Error saving settings: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            // Switch on event handler
+            clb.ItemCheck += checkedListBoxT2G2_ItemCheck;
+        }
+
+        private void checkedListBoxT2G3_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            CheckedListBox clb = (CheckedListBox)sender;
+            // Switch off event handler
+            clb.ItemCheck -= checkedListBoxT2G3_ItemCheck;
+            clb.SetItemCheckState(e.Index, e.NewValue);
+
+            try
+            {
+                Properties.Settings.Default.t2ck_CustomWordReplace = checkedListBoxT2G3.GetItemChecked(0);
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception ex1)
+            {
+                MessageBox.Show("Error saving settings: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            // Switch on event handler
+            clb.ItemCheck += checkedListBoxT2G3_ItemCheck;
+        }
+
+        private void checkedListBoxT2G4_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            CheckedListBox clb = (CheckedListBox)sender;
+            // Switch off event handler
+            clb.ItemCheck -= checkedListBoxT2G4_ItemCheck;
+            clb.SetItemCheckState(e.Index, e.NewValue);
+
+            try
+            {
+                Properties.Settings.Default.t2ck_DelEmptyText = checkedListBoxT2G4.GetItemChecked(0);
+                Properties.Settings.Default.t2ck_DelEmptyVT = checkedListBoxT2G4.GetItemChecked(1);
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception ex1)
+            {
+                MessageBox.Show("Error saving settings: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            // Switch on event handler
+            clb.ItemCheck += checkedListBoxT2G4_ItemCheck;
+        }
+
+        // TAB 3 Contents
+
+        private void button_t3_1_Click(object sender, EventArgs e)
+        {
+            // P1 - Open Folder Dialog
+            try
+            {
+                CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+                dialog.RestoreDirectory = true;
+                dialog.IsFolderPicker = true;
+                if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    //Load var and textbox
+                    t3SourcePath = dialog.FileName;
+                    textBox_t3_1.Text = dialog.FileName;
+                    //Track to end of textbox
+                    textBox_t3_1.SelectionStart = textBox_csvPath.Text.Length;
+                    textBox_t3_1.SelectionLength = 0;
+                    //Set Flag
+                    SourcePathLoaded = true;
+                    button_t3_2.Enabled = true;
+                } 
+            }
+            catch (Exception ex1)
+            {
+                MessageBox.Show("Error browsing for source folder: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button_t3_2_Click(object sender, EventArgs e)
+        {
+            // P1 - Open Folder Dialog
+            try
+            {
+                CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+                dialog.RestoreDirectory = true;
+                dialog.IsFolderPicker = true;
+                if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    //Load var and textbox
+                    t3OutputPath = dialog.FileName;
+                    textBox_t3_2.Text = dialog.FileName;
+                    //Track to end of textbox
+                    textBox_t3_2.SelectionStart = textBox_csvPath.Text.Length;
+                    textBox_t3_2.SelectionLength = 0;
+                    //Set Flag
+                    OutputPathLoaded = true;
+                    button_t3_start.Enabled = true;
+                }
+            }
+            catch (Exception ex1)
+            {
+                MessageBox.Show("Error browsing for output folder: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button_t3_start_Click(object sender, EventArgs e)
+        {
+            if (SourcePathLoaded && OutputPathLoaded)
+            {
+                //Calls Dialog, sets paths
+                Form_AudioProcess fDialog = new Form_AudioProcess();
+                fDialog.SetPaths(t3SourcePath, t3OutputPath);
+
+                // Show testDialog as a modal dialog and determine if DialogResult = OK.
+                if (fDialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    MessageBox.Show("OK!");
+                }
+                else
+                {
+                    MessageBox.Show("Canceled.");
+                }
+                fDialog.Dispose();
+            }
         }
     }
 }

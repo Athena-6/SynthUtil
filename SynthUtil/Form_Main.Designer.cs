@@ -49,6 +49,9 @@ namespace SynthUtil
             this.textboxPath = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox_lineCount = new System.Windows.Forms.TextBox();
+            this.checkedListBoxT2G3 = new System.Windows.Forms.CheckedListBox();
+            this.checkedListBoxT2G2 = new System.Windows.Forms.CheckedListBox();
             this.button2_settings = new System.Windows.Forms.Button();
             this.textBox_csvPath = new System.Windows.Forms.TextBox();
             this.button2_WordR = new System.Windows.Forms.Button();
@@ -62,13 +65,20 @@ namespace SynthUtil
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.button2_load = new System.Windows.Forms.Button();
-            this.checkedListBoxT2G2 = new System.Windows.Forms.CheckedListBox();
-            this.checkedListBoxT2G3 = new System.Windows.Forms.CheckedListBox();
-            this.textBox_lineCount = new System.Windows.Forms.TextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button_t3_start = new System.Windows.Forms.Button();
+            this.label_t3_2 = new System.Windows.Forms.Label();
+            this.button_t3_2 = new System.Windows.Forms.Button();
+            this.button_t3_1 = new System.Windows.Forms.Button();
+            this.textBox_t3_2 = new System.Windows.Forms.TextBox();
+            this.textBox_t3_1 = new System.Windows.Forms.TextBox();
+            this.label_t3_1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // backgroundWorker1
@@ -96,6 +106,7 @@ namespace SynthUtil
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -287,6 +298,42 @@ namespace SynthUtil
             this.tabPage2.Text = "CSV Editor";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // textBox_lineCount
+            // 
+            this.textBox_lineCount.Location = new System.Drawing.Point(433, 445);
+            this.textBox_lineCount.Name = "textBox_lineCount";
+            this.textBox_lineCount.Size = new System.Drawing.Size(160, 29);
+            this.textBox_lineCount.TabIndex = 46;
+            // 
+            // checkedListBoxT2G3
+            // 
+            this.checkedListBoxT2G3.CheckOnClick = true;
+            this.checkedListBoxT2G3.FormattingEnabled = true;
+            this.checkedListBoxT2G3.Items.AddRange(new object[] {
+            "Custom word replace"});
+            this.checkedListBoxT2G3.Location = new System.Drawing.Point(623, 134);
+            this.checkedListBoxT2G3.Name = "checkedListBoxT2G3";
+            this.checkedListBoxT2G3.Size = new System.Drawing.Size(200, 56);
+            this.checkedListBoxT2G3.TabIndex = 45;
+            this.checkedListBoxT2G3.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxT2G3_ItemCheck);
+            // 
+            // checkedListBoxT2G2
+            // 
+            this.checkedListBoxT2G2.CheckOnClick = true;
+            this.checkedListBoxT2G2.FormattingEnabled = true;
+            this.checkedListBoxT2G2.Items.AddRange(new object[] {
+            "( )",
+            "[ ]",
+            "{ }",
+            "<>",
+            "\" \"",
+            "\' \'"});
+            this.checkedListBoxT2G2.Location = new System.Drawing.Point(829, 71);
+            this.checkedListBoxT2G2.Name = "checkedListBoxT2G2";
+            this.checkedListBoxT2G2.Size = new System.Drawing.Size(83, 160);
+            this.checkedListBoxT2G2.TabIndex = 44;
+            this.checkedListBoxT2G2.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxT2G2_ItemCheck);
+            // 
             // button2_settings
             // 
             this.button2_settings.Location = new System.Drawing.Point(810, 13);
@@ -306,21 +353,23 @@ namespace SynthUtil
             // 
             // button2_WordR
             // 
-            this.button2_WordR.Location = new System.Drawing.Point(623, 263);
+            this.button2_WordR.Location = new System.Drawing.Point(623, 237);
             this.button2_WordR.Name = "button2_WordR";
-            this.button2_WordR.Size = new System.Drawing.Size(289, 46);
+            this.button2_WordR.Size = new System.Drawing.Size(289, 38);
             this.button2_WordR.TabIndex = 41;
-            this.button2_WordR.Text = "Custom Word Replacements";
+            this.button2_WordR.Text = "Replacements Setting";
             this.button2_WordR.UseVisualStyleBackColor = true;
+            this.button2_WordR.Click += new System.EventHandler(this.button2_WordR_Click);
             // 
             // button2_ProcessData
             // 
-            this.button2_ProcessData.Location = new System.Drawing.Point(749, 445);
+            this.button2_ProcessData.Location = new System.Drawing.Point(769, 445);
             this.button2_ProcessData.Name = "button2_ProcessData";
-            this.button2_ProcessData.Size = new System.Drawing.Size(163, 46);
+            this.button2_ProcessData.Size = new System.Drawing.Size(143, 46);
             this.button2_ProcessData.TabIndex = 38;
             this.button2_ProcessData.Text = "Apply Processing";
             this.button2_ProcessData.UseVisualStyleBackColor = true;
+            this.button2_ProcessData.Click += new System.EventHandler(this.button2_ProcessData_Click);
             // 
             // label3
             // 
@@ -343,6 +392,7 @@ namespace SynthUtil
             this.checkedListBoxT2G4.Name = "checkedListBoxT2G4";
             this.checkedListBoxT2G4.Size = new System.Drawing.Size(289, 82);
             this.checkedListBoxT2G4.TabIndex = 36;
+            this.checkedListBoxT2G4.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxT2G4_ItemCheck);
             // 
             // checkBox1
             // 
@@ -388,6 +438,7 @@ namespace SynthUtil
             this.checkedListBoxT2G1.Name = "checkedListBoxT2G1";
             this.checkedListBoxT2G1.Size = new System.Drawing.Size(199, 56);
             this.checkedListBoxT2G1.TabIndex = 32;
+            this.checkedListBoxT2G1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxT2G1_ItemCheck);
             // 
             // dataGridView1
             // 
@@ -422,39 +473,103 @@ namespace SynthUtil
             this.button2_load.UseVisualStyleBackColor = true;
             this.button2_load.Click += new System.EventHandler(this.button_load_Click);
             // 
-            // checkedListBoxT2G2
+            // tabPage3
             // 
-            this.checkedListBoxT2G2.CheckOnClick = true;
-            this.checkedListBoxT2G2.FormattingEnabled = true;
-            this.checkedListBoxT2G2.Items.AddRange(new object[] {
-            "( )",
-            "[ ]",
-            "{ }",
-            "<>",
-            "\" \"",
-            "\' \'"});
-            this.checkedListBoxT2G2.Location = new System.Drawing.Point(829, 71);
-            this.checkedListBoxT2G2.Name = "checkedListBoxT2G2";
-            this.checkedListBoxT2G2.Size = new System.Drawing.Size(83, 160);
-            this.checkedListBoxT2G2.TabIndex = 44;
+            this.tabPage3.Controls.Add(this.button_t3_start);
+            this.tabPage3.Controls.Add(this.label_t3_2);
+            this.tabPage3.Controls.Add(this.button_t3_2);
+            this.tabPage3.Controls.Add(this.button_t3_1);
+            this.tabPage3.Controls.Add(this.textBox_t3_2);
+            this.tabPage3.Controls.Add(this.textBox_t3_1);
+            this.tabPage3.Controls.Add(this.label_t3_1);
+            this.tabPage3.Controls.Add(this.label5);
+            this.tabPage3.Location = new System.Drawing.Point(4, 30);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(944, 523);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "CK .wav Preprocessing";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // checkedListBoxT2G3
+            // label5
             // 
-            this.checkedListBoxT2G3.CheckOnClick = true;
-            this.checkedListBoxT2G3.FormattingEnabled = true;
-            this.checkedListBoxT2G3.Items.AddRange(new object[] {
-            "Custom word replace"});
-            this.checkedListBoxT2G3.Location = new System.Drawing.Point(623, 134);
-            this.checkedListBoxT2G3.Name = "checkedListBoxT2G3";
-            this.checkedListBoxT2G3.Size = new System.Drawing.Size(200, 56);
-            this.checkedListBoxT2G3.TabIndex = 45;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(25, 14);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(462, 32);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Audio Preprocessing for CK lip generation";
             // 
-            // textBox_lineCount
+            // button_t3_start
             // 
-            this.textBox_lineCount.Location = new System.Drawing.Point(433, 445);
-            this.textBox_lineCount.Name = "textBox_lineCount";
-            this.textBox_lineCount.Size = new System.Drawing.Size(160, 29);
-            this.textBox_lineCount.TabIndex = 46;
+            this.button_t3_start.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button_t3_start.Enabled = false;
+            this.button_t3_start.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_t3_start.Location = new System.Drawing.Point(401, 439);
+            this.button_t3_start.Name = "button_t3_start";
+            this.button_t3_start.Size = new System.Drawing.Size(144, 49);
+            this.button_t3_start.TabIndex = 30;
+            this.button_t3_start.Text = "Start Process";
+            this.button_t3_start.UseVisualStyleBackColor = true;
+            this.button_t3_start.Click += new System.EventHandler(this.button_t3_start_Click);
+            // 
+            // label_t3_2
+            // 
+            this.label_t3_2.AutoSize = true;
+            this.label_t3_2.Location = new System.Drawing.Point(31, 129);
+            this.label_t3_2.Name = "label_t3_2";
+            this.label_t3_2.Size = new System.Drawing.Size(142, 21);
+            this.label_t3_2.TabIndex = 29;
+            this.label_t3_2.Text = "Output Destination";
+            // 
+            // button_t3_2
+            // 
+            this.button_t3_2.Enabled = false;
+            this.button_t3_2.Location = new System.Drawing.Point(747, 154);
+            this.button_t3_2.Name = "button_t3_2";
+            this.button_t3_2.Size = new System.Drawing.Size(167, 41);
+            this.button_t3_2.TabIndex = 28;
+            this.button_t3_2.Text = "Browse";
+            this.button_t3_2.UseVisualStyleBackColor = true;
+            this.button_t3_2.Click += new System.EventHandler(this.button_t3_2_Click);
+            // 
+            // button_t3_1
+            // 
+            this.button_t3_1.Location = new System.Drawing.Point(747, 86);
+            this.button_t3_1.Name = "button_t3_1";
+            this.button_t3_1.Size = new System.Drawing.Size(167, 41);
+            this.button_t3_1.TabIndex = 27;
+            this.button_t3_1.Text = "Browse";
+            this.button_t3_1.UseVisualStyleBackColor = true;
+            this.button_t3_1.Click += new System.EventHandler(this.button_t3_1_Click);
+            // 
+            // textBox_t3_2
+            // 
+            this.textBox_t3_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_t3_2.Location = new System.Drawing.Point(32, 157);
+            this.textBox_t3_2.Name = "textBox_t3_2";
+            this.textBox_t3_2.ReadOnly = true;
+            this.textBox_t3_2.Size = new System.Drawing.Size(691, 32);
+            this.textBox_t3_2.TabIndex = 25;
+            // 
+            // textBox_t3_1
+            // 
+            this.textBox_t3_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_t3_1.Location = new System.Drawing.Point(32, 89);
+            this.textBox_t3_1.Name = "textBox_t3_1";
+            this.textBox_t3_1.ReadOnly = true;
+            this.textBox_t3_1.Size = new System.Drawing.Size(691, 32);
+            this.textBox_t3_1.TabIndex = 26;
+            // 
+            // label_t3_1
+            // 
+            this.label_t3_1.AutoSize = true;
+            this.label_t3_1.Location = new System.Drawing.Point(28, 56);
+            this.label_t3_1.Name = "label_t3_1";
+            this.label_t3_1.Size = new System.Drawing.Size(216, 21);
+            this.label_t3_1.TabIndex = 24;
+            this.label_t3_1.Text = "Source .esp / .esm / .esl folder";
             // 
             // form_main
             // 
@@ -474,6 +589,8 @@ namespace SynthUtil
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -514,6 +631,15 @@ namespace SynthUtil
         private System.Windows.Forms.CheckedListBox checkedListBoxT2G3;
         private System.Windows.Forms.CheckedListBox checkedListBoxT2G2;
         private System.Windows.Forms.TextBox textBox_lineCount;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button_t3_start;
+        private System.Windows.Forms.Label label_t3_2;
+        private System.Windows.Forms.Button button_t3_2;
+        private System.Windows.Forms.Button button_t3_1;
+        private System.Windows.Forms.TextBox textBox_t3_2;
+        private System.Windows.Forms.TextBox textBox_t3_1;
+        private System.Windows.Forms.Label label_t3_1;
     }
 }
 

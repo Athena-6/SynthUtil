@@ -133,7 +133,7 @@ namespace SynthUtil
                 wav_getDirectory.Add(Path.GetDirectoryName(arrItem));
                 wav_getFilesNoExt.Add(Path.GetFileNameWithoutExtension(arrItem));
                 filesIndex++;
-                int percentage = filesIndex * 100 / files.Length;
+                int percentage = ProgramTools.IntToPerc(filesIndex, files.Length);
                 backgroundWorker1.ReportProgress(percentage, filesIndex);
             }
         }
@@ -165,7 +165,7 @@ namespace SynthUtil
                 lip_getDirectory.Add(Path.GetDirectoryName(arrItem));
                 lip_getFilesNoExt.Add(Path.GetFileNameWithoutExtension(arrItem));
                 filesIndex++;
-                int percentage = filesIndex * 100 / files.Length;
+                int percentage = ProgramTools.IntToPerc(filesIndex, files.Length);
                 backgroundWorker2.ReportProgress(percentage, filesIndex);
             }
         }
@@ -196,7 +196,7 @@ namespace SynthUtil
                     lipExists++;
                 }
                 filesIndex++;
-                int percentage = filesIndex * 100 / wav_getFilesNoExt.Count;
+                int percentage = ProgramTools.IntToPerc(filesIndex, wav_getFilesNoExt.Count);
                 backgroundWorker3.ReportProgress(percentage);
             }
 

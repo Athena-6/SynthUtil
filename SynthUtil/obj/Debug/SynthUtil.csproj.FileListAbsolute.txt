@@ -22,3 +22,8 @@ C:\VS_source\repos\SynthUtilApp\SynthUtil\obj\Debug\SynthUtil.application
 C:\VS_source\repos\SynthUtilApp\SynthUtil\obj\Debug\SynthUtil.form_main.resources
 C:\VS_source\repos\SynthUtilApp\SynthUtil\obj\Debug\SynthUtil.Form_FileValidate.resources
 C:\VS_source\repos\SynthUtilApp\SynthUtil\obj\Debug\SynthUtil.Form_Tab2Settings.resources
+C:\VS_source\repos\SynthUtilApp\SynthUtil\obj\Debug\SynthUtil.Form_ProcessingSettings.resources
+C:\VS_source\repos\SynthUtilApp\SynthUtil\obj\Debug\SynthUtil.Form_Processing.resources
+C:\VS_source\repos\SynthUtilApp\SynthUtil\bin\Debug\FileHelpers.dll
+C:\VS_source\repos\SynthUtilApp\SynthUtil\bin\Debug\FileHelpers.xml
+C:\VS_source\repos\SynthUtilApp\SynthUtil\obj\Debug\SynthUtil.Form_AudioProcess.resources

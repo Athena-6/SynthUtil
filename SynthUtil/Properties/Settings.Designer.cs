@@ -49,7 +49,7 @@ namespace SynthUtil.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool t2ck_DelBetweenSymb {
             get {
                 return ((bool)(this["t2ck_DelBetweenSymb"]));
@@ -61,7 +61,7 @@ namespace SynthUtil.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool t2ck_DelSingleSymb {
             get {
                 return ((bool)(this["t2ck_DelSingleSymb"]));
@@ -73,7 +73,7 @@ namespace SynthUtil.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool t2ck_Symb1 {
             get {
                 return ((bool)(this["t2ck_Symb1"]));
@@ -85,7 +85,7 @@ namespace SynthUtil.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool t2ck_Symb2 {
             get {
                 return ((bool)(this["t2ck_Symb2"]));
@@ -97,7 +97,7 @@ namespace SynthUtil.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool t2ck_Symb3 {
             get {
                 return ((bool)(this["t2ck_Symb3"]));
@@ -109,7 +109,7 @@ namespace SynthUtil.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool t2ck_Symb4 {
             get {
                 return ((bool)(this["t2ck_Symb4"]));
@@ -121,7 +121,7 @@ namespace SynthUtil.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool t2ck_Symb5 {
             get {
                 return ((bool)(this["t2ck_Symb5"]));
@@ -133,7 +133,7 @@ namespace SynthUtil.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool t2ck_Symb6 {
             get {
                 return ((bool)(this["t2ck_Symb6"]));
@@ -145,7 +145,7 @@ namespace SynthUtil.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool t2ck_CustomWordReplace {
             get {
                 return ((bool)(this["t2ck_CustomWordReplace"]));
@@ -157,7 +157,7 @@ namespace SynthUtil.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool t2ck_DelEmptyText {
             get {
                 return ((bool)(this["t2ck_DelEmptyText"]));
@@ -169,7 +169,7 @@ namespace SynthUtil.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool t2ck_DelEmptyVT {
             get {
                 return ((bool)(this["t2ck_DelEmptyVT"]));
