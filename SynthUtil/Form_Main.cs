@@ -79,20 +79,9 @@ namespace SynthUtil
 
             //For Tab 2
             //Settings Group 1
-            checkedListBoxT2G1.SetItemChecked(0, Properties.Settings.Default.t2ck_DelBetweenSymb);
-            checkedListBoxT2G1.SetItemChecked(1, Properties.Settings.Default.t2ck_DelSingleSymb);
+            checkBox_t2_proc1.Checked = Properties.Settings.Default.t2ck_CustomWordReplace;
             //Settings Group 2
-            checkedListBoxT2G2.SetItemChecked(0, Properties.Settings.Default.t2ck_Symb1);
-            checkedListBoxT2G2.SetItemChecked(1, Properties.Settings.Default.t2ck_Symb2);
-            checkedListBoxT2G2.SetItemChecked(2, Properties.Settings.Default.t2ck_Symb3);
-            checkedListBoxT2G2.SetItemChecked(3, Properties.Settings.Default.t2ck_Symb4);
-            checkedListBoxT2G2.SetItemChecked(4, Properties.Settings.Default.t2ck_Symb5);
-            checkedListBoxT2G2.SetItemChecked(5, Properties.Settings.Default.t2ck_Symb6);
-            //Settings Group 3
-            checkedListBoxT2G3.SetItemChecked(0, Properties.Settings.Default.t2ck_CustomWordReplace);
-            //Settings Group 4
-            checkedListBoxT2G4.SetItemChecked(0, Properties.Settings.Default.t2ck_DelEmptyText);
-            checkedListBoxT2G4.SetItemChecked(1, Properties.Settings.Default.t2ck_DelEmptyVT);
+            checkBox_t2_proc2.Checked = Properties.Settings.Default.t2ck_SortVoiceID;
         }
 
         private void StateUpdate()
@@ -601,12 +590,22 @@ namespace SynthUtil
                 {
                     String appPath = Directory.GetCurrentDirectory();
                     String csvPath = appPath + @"\SynthUtil_Temp.csv";
+
+                    //Lock UI, Wait cursor on
+                    Cursor.Current = Cursors.WaitCursor;
+                    this.Enabled = false;
                     //Load CSV
                     LoadCSV(csvPath);
                 }
                 catch (Exception ex1)
                 {
                     MessageBox.Show("Error reading processed data: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    //Unlock UI, Wait cursor off
+                    Cursor.Current = Cursors.Default;
+                    this.Enabled = true;
                 }
             }
             else
@@ -625,91 +624,39 @@ namespace SynthUtil
             clb.ItemCheck -= checkedListBoxT2G1_ItemCheck;
             clb.SetItemCheckState(e.Index, e.NewValue);
 
-            try
-            {
-                Properties.Settings.Default.t2ck_DelBetweenSymb = checkedListBoxT2G1.GetItemChecked(0);
-                Properties.Settings.Default.t2ck_DelSingleSymb = checkedListBoxT2G1.GetItemChecked(1);
-                Properties.Settings.Default.Save();
-            }
-            catch (Exception ex1)
-            {
-                MessageBox.Show("Error saving settings: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
 
             // Switch on event handler
             clb.ItemCheck += checkedListBoxT2G1_ItemCheck;
         }
 
-        private void checkedListBoxT2G2_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            CheckedListBox clb = (CheckedListBox)sender;
-            // Switch off event handler
-            clb.ItemCheck -= checkedListBoxT2G2_ItemCheck;
-            clb.SetItemCheckState(e.Index, e.NewValue);
-
-            try
-            {
-                Properties.Settings.Default.t2ck_Symb1 = checkedListBoxT2G2.GetItemChecked(0);
-                Properties.Settings.Default.t2ck_Symb2 = checkedListBoxT2G2.GetItemChecked(1);
-                Properties.Settings.Default.t2ck_Symb3 = checkedListBoxT2G2.GetItemChecked(2);
-                Properties.Settings.Default.t2ck_Symb4 = checkedListBoxT2G2.GetItemChecked(3);
-                Properties.Settings.Default.t2ck_Symb5 = checkedListBoxT2G2.GetItemChecked(4);
-                Properties.Settings.Default.t2ck_Symb6 = checkedListBoxT2G2.GetItemChecked(5);
-                Properties.Settings.Default.Save();
-            }
-            catch (Exception ex1)
-            {
-                MessageBox.Show("Error saving settings: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            // Switch on event handler
-            clb.ItemCheck += checkedListBoxT2G2_ItemCheck;
-        }
-
-        private void checkedListBoxT2G3_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            CheckedListBox clb = (CheckedListBox)sender;
-            // Switch off event handler
-            clb.ItemCheck -= checkedListBoxT2G3_ItemCheck;
-            clb.SetItemCheckState(e.Index, e.NewValue);
-
-            try
-            {
-                Properties.Settings.Default.t2ck_CustomWordReplace = checkedListBoxT2G3.GetItemChecked(0);
-                Properties.Settings.Default.Save();
-            }
-            catch (Exception ex1)
-            {
-                MessageBox.Show("Error saving settings: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            // Switch on event handler
-            clb.ItemCheck += checkedListBoxT2G3_ItemCheck;
-        }
-
-        private void checkedListBoxT2G4_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            CheckedListBox clb = (CheckedListBox)sender;
-            // Switch off event handler
-            clb.ItemCheck -= checkedListBoxT2G4_ItemCheck;
-            clb.SetItemCheckState(e.Index, e.NewValue);
-
-            try
-            {
-                Properties.Settings.Default.t2ck_DelEmptyText = checkedListBoxT2G4.GetItemChecked(0);
-                Properties.Settings.Default.t2ck_DelEmptyVT = checkedListBoxT2G4.GetItemChecked(1);
-                Properties.Settings.Default.Save();
-            }
-            catch (Exception ex1)
-            {
-                MessageBox.Show("Error saving settings: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            // Switch on event handler
-            clb.ItemCheck += checkedListBoxT2G4_ItemCheck;
-        }
 
         // TAB 3 Contents
+        private void checkBox_t2_proc1_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Properties.Settings.Default.t2ck_CustomWordReplace = checkBox_t2_proc1.Checked;
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception ex1)
+            {
+                MessageBox.Show("Error saving settings: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void checkBox_t2_proc2_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Properties.Settings.Default.t2ck_SortVoiceID = checkBox_t2_proc2.Checked;
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception ex1)
+            {
+                MessageBox.Show("Error saving settings: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void button_t3_1_Click(object sender, EventArgs e)
         {
@@ -783,6 +730,8 @@ namespace SynthUtil
                     MessageBox.Show("Canceled.");
                 }
                 fDialog.Dispose();
+
+
             }
         }
     }

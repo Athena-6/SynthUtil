@@ -49,24 +49,20 @@ namespace SynthUtil
             this.textboxPath = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.checkBox_t2_proc1 = new System.Windows.Forms.CheckBox();
+            this.checkBox_t2_proc2 = new System.Windows.Forms.CheckBox();
             this.textBox_lineCount = new System.Windows.Forms.TextBox();
-            this.checkedListBoxT2G3 = new System.Windows.Forms.CheckedListBox();
-            this.checkedListBoxT2G2 = new System.Windows.Forms.CheckedListBox();
             this.button2_settings = new System.Windows.Forms.Button();
             this.textBox_csvPath = new System.Windows.Forms.TextBox();
             this.button2_WordR = new System.Windows.Forms.Button();
             this.button2_ProcessData = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.checkedListBoxT2G4 = new System.Windows.Forms.CheckedListBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button2_save = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.checkedListBoxT2G1 = new System.Windows.Forms.CheckedListBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.button2_load = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
             this.button_t3_start = new System.Windows.Forms.Button();
             this.label_t3_2 = new System.Windows.Forms.Label();
             this.button_t3_2 = new System.Windows.Forms.Button();
@@ -74,6 +70,10 @@ namespace SynthUtil
             this.textBox_t3_2 = new System.Windows.Forms.TextBox();
             this.textBox_t3_1 = new System.Windows.Forms.TextBox();
             this.label_t3_1 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label_t3_3 = new System.Windows.Forms.Label();
+            this.textBox_t3_3 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -232,7 +232,7 @@ namespace SynthUtil
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(25, 14);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(261, 32);
+            this.label2.Size = new System.Drawing.Size(260, 32);
             this.label2.TabIndex = 16;
             this.label2.Text = "Static .lip file generator";
             // 
@@ -275,19 +275,16 @@ namespace SynthUtil
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.checkBox_t2_proc1);
+            this.tabPage2.Controls.Add(this.checkBox_t2_proc2);
             this.tabPage2.Controls.Add(this.textBox_lineCount);
-            this.tabPage2.Controls.Add(this.checkedListBoxT2G3);
-            this.tabPage2.Controls.Add(this.checkedListBoxT2G2);
             this.tabPage2.Controls.Add(this.button2_settings);
             this.tabPage2.Controls.Add(this.textBox_csvPath);
             this.tabPage2.Controls.Add(this.button2_WordR);
             this.tabPage2.Controls.Add(this.button2_ProcessData);
             this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Controls.Add(this.checkedListBoxT2G4);
-            this.tabPage2.Controls.Add(this.checkBox1);
             this.tabPage2.Controls.Add(this.button2_save);
             this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.checkedListBoxT2G1);
             this.tabPage2.Controls.Add(this.dataGridView1);
             this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.button2_load);
@@ -298,41 +295,34 @@ namespace SynthUtil
             this.tabPage2.Text = "CSV Editor";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // checkBox_t2_proc1
+            // 
+            this.checkBox_t2_proc1.AutoSize = true;
+            this.checkBox_t2_proc1.Location = new System.Drawing.Point(664, 102);
+            this.checkBox_t2_proc1.Name = "checkBox_t2_proc1";
+            this.checkBox_t2_proc1.Size = new System.Drawing.Size(190, 25);
+            this.checkBox_t2_proc1.TabIndex = 48;
+            this.checkBox_t2_proc1.Text = "Custom Word Replace";
+            this.checkBox_t2_proc1.UseVisualStyleBackColor = true;
+            this.checkBox_t2_proc1.CheckedChanged += new System.EventHandler(this.checkBox_t2_proc1_CheckedChanged);
+            // 
+            // checkBox_t2_proc2
+            // 
+            this.checkBox_t2_proc2.AutoSize = true;
+            this.checkBox_t2_proc2.Location = new System.Drawing.Point(664, 260);
+            this.checkBox_t2_proc2.Name = "checkBox_t2_proc2";
+            this.checkBox_t2_proc2.Size = new System.Drawing.Size(248, 25);
+            this.checkBox_t2_proc2.TabIndex = 47;
+            this.checkBox_t2_proc2.Text = "Sort / Group Lines by voice_id ";
+            this.checkBox_t2_proc2.UseVisualStyleBackColor = true;
+            this.checkBox_t2_proc2.CheckedChanged += new System.EventHandler(this.checkBox_t2_proc2_CheckedChanged);
+            // 
             // textBox_lineCount
             // 
             this.textBox_lineCount.Location = new System.Drawing.Point(433, 445);
             this.textBox_lineCount.Name = "textBox_lineCount";
             this.textBox_lineCount.Size = new System.Drawing.Size(160, 29);
             this.textBox_lineCount.TabIndex = 46;
-            // 
-            // checkedListBoxT2G3
-            // 
-            this.checkedListBoxT2G3.CheckOnClick = true;
-            this.checkedListBoxT2G3.FormattingEnabled = true;
-            this.checkedListBoxT2G3.Items.AddRange(new object[] {
-            "Custom word replace"});
-            this.checkedListBoxT2G3.Location = new System.Drawing.Point(623, 134);
-            this.checkedListBoxT2G3.Name = "checkedListBoxT2G3";
-            this.checkedListBoxT2G3.Size = new System.Drawing.Size(200, 56);
-            this.checkedListBoxT2G3.TabIndex = 45;
-            this.checkedListBoxT2G3.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxT2G3_ItemCheck);
-            // 
-            // checkedListBoxT2G2
-            // 
-            this.checkedListBoxT2G2.CheckOnClick = true;
-            this.checkedListBoxT2G2.FormattingEnabled = true;
-            this.checkedListBoxT2G2.Items.AddRange(new object[] {
-            "( )",
-            "[ ]",
-            "{ }",
-            "<>",
-            "\" \"",
-            "\' \'"});
-            this.checkedListBoxT2G2.Location = new System.Drawing.Point(829, 71);
-            this.checkedListBoxT2G2.Name = "checkedListBoxT2G2";
-            this.checkedListBoxT2G2.Size = new System.Drawing.Size(83, 160);
-            this.checkedListBoxT2G2.TabIndex = 44;
-            this.checkedListBoxT2G2.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxT2G2_ItemCheck);
             // 
             // button2_settings
             // 
@@ -353,9 +343,9 @@ namespace SynthUtil
             // 
             // button2_WordR
             // 
-            this.button2_WordR.Location = new System.Drawing.Point(623, 237);
+            this.button2_WordR.Location = new System.Drawing.Point(664, 133);
             this.button2_WordR.Name = "button2_WordR";
-            this.button2_WordR.Size = new System.Drawing.Size(289, 38);
+            this.button2_WordR.Size = new System.Drawing.Size(248, 46);
             this.button2_WordR.TabIndex = 41;
             this.button2_WordR.Text = "Replacements Setting";
             this.button2_WordR.UseVisualStyleBackColor = true;
@@ -363,9 +353,9 @@ namespace SynthUtil
             // 
             // button2_ProcessData
             // 
-            this.button2_ProcessData.Location = new System.Drawing.Point(769, 445);
+            this.button2_ProcessData.Location = new System.Drawing.Point(664, 428);
             this.button2_ProcessData.Name = "button2_ProcessData";
-            this.button2_ProcessData.Size = new System.Drawing.Size(143, 46);
+            this.button2_ProcessData.Size = new System.Drawing.Size(248, 46);
             this.button2_ProcessData.TabIndex = 38;
             this.button2_ProcessData.Text = "Apply Processing";
             this.button2_ProcessData.UseVisualStyleBackColor = true;
@@ -375,41 +365,16 @@ namespace SynthUtil
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(618, 312);
+            this.label3.Location = new System.Drawing.Point(659, 229);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(169, 28);
             this.label3.TabIndex = 37;
             this.label3.Text = "Processing Step 2:";
             // 
-            // checkedListBoxT2G4
-            // 
-            this.checkedListBoxT2G4.CheckOnClick = true;
-            this.checkedListBoxT2G4.FormattingEnabled = true;
-            this.checkedListBoxT2G4.Items.AddRange(new object[] {
-            "Delete lines with Empty Text",
-            "Delete lines with Empty VoiceType"});
-            this.checkedListBoxT2G4.Location = new System.Drawing.Point(623, 343);
-            this.checkedListBoxT2G4.Name = "checkedListBoxT2G4";
-            this.checkedListBoxT2G4.Size = new System.Drawing.Size(289, 82);
-            this.checkedListBoxT2G4.TabIndex = 36;
-            this.checkedListBoxT2G4.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxT2G4_ItemCheck);
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(171, 21);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(214, 25);
-            this.checkBox1.TabIndex = 35;
-            this.checkBox1.Text = "Make Backup before Save";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // button2_save
             // 
             this.button2_save.Enabled = false;
-            this.button2_save.Location = new System.Drawing.Point(391, 12);
+            this.button2_save.Location = new System.Drawing.Point(433, 14);
             this.button2_save.Name = "button2_save";
             this.button2_save.Size = new System.Drawing.Size(92, 41);
             this.button2_save.TabIndex = 34;
@@ -421,24 +386,11 @@ namespace SynthUtil
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(618, 40);
+            this.label6.Location = new System.Drawing.Point(659, 71);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(169, 28);
             this.label6.TabIndex = 33;
             this.label6.Text = "Processing Step 1:";
-            // 
-            // checkedListBoxT2G1
-            // 
-            this.checkedListBoxT2G1.CheckOnClick = true;
-            this.checkedListBoxT2G1.FormattingEnabled = true;
-            this.checkedListBoxT2G1.Items.AddRange(new object[] {
-            "Del. between symbols",
-            "Del. single symbols"});
-            this.checkedListBoxT2G1.Location = new System.Drawing.Point(623, 71);
-            this.checkedListBoxT2G1.Name = "checkedListBoxT2G1";
-            this.checkedListBoxT2G1.Size = new System.Drawing.Size(199, 56);
-            this.checkedListBoxT2G1.TabIndex = 32;
-            this.checkedListBoxT2G1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxT2G1_ItemCheck);
             // 
             // dataGridView1
             // 
@@ -450,7 +402,7 @@ namespace SynthUtil
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(564, 354);
+            this.dataGridView1.Size = new System.Drawing.Size(604, 354);
             this.dataGridView1.TabIndex = 31;
             // 
             // label4
@@ -459,13 +411,13 @@ namespace SynthUtil
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(23, 14);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(127, 32);
+            this.label4.Size = new System.Drawing.Size(126, 32);
             this.label4.TabIndex = 30;
             this.label4.Text = "CSV Editor";
             // 
             // button2_load
             // 
-            this.button2_load.Location = new System.Drawing.Point(501, 13);
+            this.button2_load.Location = new System.Drawing.Point(541, 14);
             this.button2_load.Name = "button2_load";
             this.button2_load.Size = new System.Drawing.Size(92, 41);
             this.button2_load.TabIndex = 25;
@@ -475,6 +427,9 @@ namespace SynthUtil
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label7);
+            this.tabPage3.Controls.Add(this.textBox_t3_3);
+            this.tabPage3.Controls.Add(this.label_t3_3);
             this.tabPage3.Controls.Add(this.button_t3_start);
             this.tabPage3.Controls.Add(this.label_t3_2);
             this.tabPage3.Controls.Add(this.button_t3_2);
@@ -490,16 +445,6 @@ namespace SynthUtil
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "CK .wav Preprocessing";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(25, 14);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(462, 32);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Audio Preprocessing for CK lip generation";
             // 
             // button_t3_start
             // 
@@ -546,30 +491,68 @@ namespace SynthUtil
             // 
             // textBox_t3_2
             // 
-            this.textBox_t3_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_t3_2.Font = new System.Drawing.Font("Roboto", 11F);
             this.textBox_t3_2.Location = new System.Drawing.Point(32, 157);
             this.textBox_t3_2.Name = "textBox_t3_2";
             this.textBox_t3_2.ReadOnly = true;
-            this.textBox_t3_2.Size = new System.Drawing.Size(691, 32);
+            this.textBox_t3_2.Size = new System.Drawing.Size(691, 37);
             this.textBox_t3_2.TabIndex = 25;
             // 
             // textBox_t3_1
             // 
-            this.textBox_t3_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_t3_1.Font = new System.Drawing.Font("Roboto", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_t3_1.Location = new System.Drawing.Point(32, 89);
             this.textBox_t3_1.Name = "textBox_t3_1";
             this.textBox_t3_1.ReadOnly = true;
-            this.textBox_t3_1.Size = new System.Drawing.Size(691, 32);
+            this.textBox_t3_1.Size = new System.Drawing.Size(691, 37);
             this.textBox_t3_1.TabIndex = 26;
             // 
             // label_t3_1
             // 
             this.label_t3_1.AutoSize = true;
-            this.label_t3_1.Location = new System.Drawing.Point(28, 56);
+            this.label_t3_1.Location = new System.Drawing.Point(31, 56);
             this.label_t3_1.Name = "label_t3_1";
-            this.label_t3_1.Size = new System.Drawing.Size(216, 21);
+            this.label_t3_1.Size = new System.Drawing.Size(335, 21);
             this.label_t3_1.TabIndex = 24;
-            this.label_t3_1.Text = "Source .esp / .esm / .esl folder";
+            this.label_t3_1.Text = "Source Folder (Sub-folder paths will be copied)";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(25, 14);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(461, 32);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Audio Preprocessing for CK lip generation";
+            // 
+            // label_t3_3
+            // 
+            this.label_t3_3.AutoSize = true;
+            this.label_t3_3.Location = new System.Drawing.Point(31, 224);
+            this.label_t3_3.Name = "label_t3_3";
+            this.label_t3_3.Size = new System.Drawing.Size(163, 21);
+            this.label_t3_3.TabIndex = 31;
+            this.label_t3_3.Text = "Step Size / Resolution:";
+            // 
+            // textBox_t3_3
+            // 
+            this.textBox_t3_3.Font = new System.Drawing.Font("Roboto", 11F);
+            this.textBox_t3_3.Location = new System.Drawing.Point(32, 248);
+            this.textBox_t3_3.Name = "textBox_t3_3";
+            this.textBox_t3_3.ReadOnly = true;
+            this.textBox_t3_3.Size = new System.Drawing.Size(159, 37);
+            this.textBox_t3_3.TabIndex = 32;
+            this.textBox_t3_3.Text = "60 [Locked]";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(31, 288);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(108, 21);
+            this.label7.TabIndex = 33;
+            this.label7.Text = "1 (Linear) - 60";
             // 
             // form_main
             // 
@@ -620,16 +603,11 @@ namespace SynthUtil
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button2_save;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckedListBox checkedListBoxT2G1;
         private System.Windows.Forms.Button button2_ProcessData;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckedListBox checkedListBoxT2G4;
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button2_WordR;
         private System.Windows.Forms.TextBox textBox_csvPath;
         private System.Windows.Forms.Button button2_settings;
-        private System.Windows.Forms.CheckedListBox checkedListBoxT2G3;
-        private System.Windows.Forms.CheckedListBox checkedListBoxT2G2;
         private System.Windows.Forms.TextBox textBox_lineCount;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label label5;
@@ -640,6 +618,11 @@ namespace SynthUtil
         private System.Windows.Forms.TextBox textBox_t3_2;
         private System.Windows.Forms.TextBox textBox_t3_1;
         private System.Windows.Forms.Label label_t3_1;
+        private System.Windows.Forms.CheckBox checkBox_t2_proc1;
+        private System.Windows.Forms.CheckBox checkBox_t2_proc2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox_t3_3;
+        private System.Windows.Forms.Label label_t3_3;
     }
 }
 

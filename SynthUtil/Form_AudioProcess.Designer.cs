@@ -29,49 +29,78 @@ namespace SynthUtil
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_AudioProcess));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label_proc1b = new System.Windows.Forms.Label();
             this.label_proc1 = new System.Windows.Forms.Label();
             this.label_pg1 = new System.Windows.Forms.Label();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorker1_Indexing = new System.ComponentModel.BackgroundWorker();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.textboxPath = new System.Windows.Forms.TextBox();
+            this.backgroundWorker2_Processing = new System.ComponentModel.BackgroundWorker();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label_credits1 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button_ok = new System.Windows.Forms.Button();
+            this.button_abort = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 22);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(770, 157);
+            this.pictureBox1.Size = new System.Drawing.Size(374, 385);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.pictureBox1);
+            this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(776, 182);
+            this.groupBox1.Size = new System.Drawing.Size(380, 410);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Audio Processing View";
+            this.groupBox1.Text = "Input Audio";
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 22);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(374, 385);
+            this.panel1.TabIndex = 1;
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(15, 238);
+            this.progressBar1.Location = new System.Drawing.Point(15, 472);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(770, 37);
+            this.progressBar1.Size = new System.Drawing.Size(764, 37);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 2;
             // 
             // label_proc1b
             // 
             this.label_proc1b.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label_proc1b.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_proc1b.Location = new System.Drawing.Point(482, 210);
+            this.label_proc1b.Location = new System.Drawing.Point(476, 512);
             this.label_proc1b.Name = "label_proc1b";
             this.label_proc1b.Size = new System.Drawing.Size(303, 25);
             this.label_proc1b.TabIndex = 11;
@@ -83,7 +112,7 @@ namespace SynthUtil
             // 
             this.label_proc1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label_proc1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_proc1.Location = new System.Drawing.Point(12, 210);
+            this.label_proc1.Location = new System.Drawing.Point(10, 512);
             this.label_proc1.Name = "label_proc1";
             this.label_proc1.Size = new System.Drawing.Size(312, 25);
             this.label_proc1.TabIndex = 10;
@@ -94,7 +123,7 @@ namespace SynthUtil
             // label_pg1
             // 
             this.label_pg1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_pg1.Location = new System.Drawing.Point(362, 210);
+            this.label_pg1.Location = new System.Drawing.Point(357, 512);
             this.label_pg1.Name = "label_pg1";
             this.label_pg1.Size = new System.Drawing.Size(74, 25);
             this.label_pg1.TabIndex = 9;
@@ -102,18 +131,130 @@ namespace SynthUtil
             this.label_pg1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label_pg1.Visible = false;
             // 
-            // backgroundWorker1
+            // backgroundWorker1_Indexing
             // 
-            this.backgroundWorker1.WorkerReportsProgress = true;
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            this.backgroundWorker1_Indexing.WorkerReportsProgress = true;
+            this.backgroundWorker1_Indexing.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_Indexing_DoWork);
+            this.backgroundWorker1_Indexing.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_Indexing_ProgressChanged);
+            this.backgroundWorker1_Indexing.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_Indexing_RunWorkerCompleted);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.panel2);
+            this.groupBox2.Location = new System.Drawing.Point(402, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(380, 410);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Output Audio";
+            // 
+            // panel2
+            // 
+            this.panel2.AutoScroll = true;
+            this.panel2.Controls.Add(this.pictureBox2);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 22);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(374, 385);
+            this.panel2.TabIndex = 1;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(374, 385);
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            // 
+            // textboxPath
+            // 
+            this.textboxPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textboxPath.Location = new System.Drawing.Point(15, 434);
+            this.textboxPath.Name = "textboxPath";
+            this.textboxPath.ReadOnly = true;
+            this.textboxPath.Size = new System.Drawing.Size(764, 32);
+            this.textboxPath.TabIndex = 15;
+            // 
+            // backgroundWorker2_Processing
+            // 
+            this.backgroundWorker2_Processing.WorkerReportsProgress = true;
+            this.backgroundWorker2_Processing.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_Processing_DoWork);
+            this.backgroundWorker2_Processing.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker2_Processing_ProgressChanged);
+            this.backgroundWorker2_Processing.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker2_Processing_RunWorkerCompleted);
+            // 
+            // label_credits1
+            // 
+            this.label_credits1.AutoSize = true;
+            this.label_credits1.Location = new System.Drawing.Point(12, 567);
+            this.label_credits1.Name = "label_credits1";
+            this.label_credits1.Size = new System.Drawing.Size(263, 20);
+            this.label_credits1.TabIndex = 16;
+            this.label_credits1.Text = "Created using open-source libraries:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 607);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(390, 20);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "FftSharp - Fast Fourier Transform (FFT) tools for .NET";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 587);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(718, 20);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "FSKview - High-resolution spectrograms for rendering frequency-shift keyed (FSK) " +
+    "signals in real time";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 627);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(292, 20);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "NAudio - Open source .NET audio library";
+            // 
+            // button_ok
+            // 
+            this.button_ok.Enabled = false;
+            this.button_ok.Location = new System.Drawing.Point(683, 627);
+            this.button_ok.Name = "button_ok";
+            this.button_ok.Size = new System.Drawing.Size(96, 30);
+            this.button_ok.TabIndex = 20;
+            this.button_ok.Text = "Continue";
+            this.button_ok.UseVisualStyleBackColor = true;
+            this.button_ok.Click += new System.EventHandler(this.button_ok_Click);
+            // 
+            // button_abort
+            // 
+            this.button_abort.Enabled = false;
+            this.button_abort.Location = new System.Drawing.Point(569, 627);
+            this.button_abort.Name = "button_abort";
+            this.button_abort.Size = new System.Drawing.Size(96, 30);
+            this.button_abort.TabIndex = 21;
+            this.button_abort.Text = "Abort";
+            this.button_abort.UseVisualStyleBackColor = true;
+            this.button_abort.Click += new System.EventHandler(this.button_abort_Click);
             // 
             // Form_AudioProcess
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 678);
+            this.Controls.Add(this.button_abort);
+            this.Controls.Add(this.button_ok);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label_credits1);
+            this.Controls.Add(this.textboxPath);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label_proc1b);
             this.Controls.Add(this.label_proc1);
             this.Controls.Add(this.label_pg1);
@@ -127,7 +268,12 @@ namespace SynthUtil
             this.Shown += new System.EventHandler(this.Form_AudioProcess_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -139,6 +285,19 @@ namespace SynthUtil
         private System.Windows.Forms.Label label_proc1b;
         private System.Windows.Forms.Label label_proc1;
         private System.Windows.Forms.Label label_pg1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1_Indexing;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.TextBox textboxPath;
+        private System.ComponentModel.BackgroundWorker backgroundWorker2_Processing;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label label_credits1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button_ok;
+        private System.Windows.Forms.Button button_abort;
     }
 }

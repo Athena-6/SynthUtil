@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static SynthUtil.ProgramTools;
 
 namespace SynthUtil
 {
@@ -104,7 +105,34 @@ namespace SynthUtil
                 }
             }
 
+            if (Properties.Settings.Default.t2ck_SortVoiceID)
+            {
+                //Sorts table
 
+                label_pg1.Text = "";
+                label_pg2.Text = "";
+                label_proc1.Text = "";
+                label_proc1b.Text = "";
+                label_proc2.Text = "";
+                label_pg1.Visible = false;
+                label_pg2.Visible = false;
+                label_proc1.Visible = false;
+                label_proc1b.Visible = false;
+                label_proc2.Visible = false;
+
+                this.Cursor = Cursors.WaitCursor;
+                this.Update();
+
+                dataSource.DefaultView.Sort = "voice_id";
+                dataSource = dataSource.DefaultView.ToTable();
+                ProgramTools.WriteTempCSV(dataSource);
+
+                this.Cursor = Cursors.Default;
+                this.Update();
+
+                button_ok.Enabled = true;
+                MessageBox.Show("Operations Complete!");
+            }
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -284,7 +312,7 @@ namespace SynthUtil
             ProgramTools.WriteTempCSV(dataSource);
 
             button_ok.Enabled = true;
-
+            MessageBox.Show("Operations Complete!");
             //Delayed Start
             //ProgramTools.Delayed(250, () => MessageBox.Show("Complete!"));
         }

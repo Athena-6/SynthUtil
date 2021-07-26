@@ -1,6 +1,6 @@
-﻿using FileHelpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -44,7 +44,7 @@ namespace SynthUtil
         public static void WriteTempCSV(DataTable InputData)
         {
             //Set input dataSource to local DataTable
-            //set application directory
+            //Set application directory
             String appPath = Directory.GetCurrentDirectory();
             String csvPath = appPath + @"\SynthUtil_Temp.csv";
             //System.IO.File.SetAttributes(csvPath, FileAttributes.Hidden);
@@ -63,9 +63,9 @@ namespace SynthUtil
         //Load Temp CSV from Disk
         public static DataTable ReadTempCSV()
         {
-            //set target DataTable
+            //Set target DataTable
             DataTable output = new DataTable();
-            //set application directory
+            //Set application directory
             String appPath = Directory.GetCurrentDirectory();
             String csvPath = appPath + @"\SynthUtil_Temp.csv";
 
@@ -74,8 +74,14 @@ namespace SynthUtil
 
             try
             {
-                //populates with result
+                //Populates with result
                 output = csv.DT_ReadCSV;
+
+                //Deletes temp file
+                if (File.Exists(csvPath))
+                {
+                    File.Delete(csvPath);
+                }
             }
             catch (Exception ex1)
             {
