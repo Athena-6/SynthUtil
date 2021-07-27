@@ -32,14 +32,13 @@ namespace SynthUtil
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Processing));
             this.button_ok = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label_proc2 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
-            this.label_pg2 = new System.Windows.Forms.Label();
+            this.label_timeduration = new System.Windows.Forms.Label();
             this.label_pg1 = new System.Windows.Forms.Label();
             this.label_proc1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label_proc1b = new System.Windows.Forms.Label();
+            this.label_timelabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button_ok
@@ -62,18 +61,6 @@ namespace SynthUtil
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 1;
             // 
-            // label_proc2
-            // 
-            this.label_proc2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label_proc2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_proc2.Location = new System.Drawing.Point(18, 313);
-            this.label_proc2.Name = "label_proc2";
-            this.label_proc2.Size = new System.Drawing.Size(272, 25);
-            this.label_proc2.TabIndex = 2;
-            this.label_proc2.Text = "Processing Word Replacements...";
-            this.label_proc2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label_proc2.Visible = false;
-            // 
             // backgroundWorker1
             // 
             this.backgroundWorker1.WorkerReportsProgress = true;
@@ -81,25 +68,16 @@ namespace SynthUtil
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
-            // progressBar2
+            // label_timeduration
             // 
-            this.progressBar2.Location = new System.Drawing.Point(23, 277);
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(754, 33);
-            this.progressBar2.Step = 1;
-            this.progressBar2.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar2.TabIndex = 3;
-            // 
-            // label_pg2
-            // 
-            this.label_pg2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_pg2.Location = new System.Drawing.Point(363, 313);
-            this.label_pg2.Name = "label_pg2";
-            this.label_pg2.Size = new System.Drawing.Size(74, 25);
-            this.label_pg2.TabIndex = 4;
-            this.label_pg2.Text = "1/4";
-            this.label_pg2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label_pg2.Visible = false;
+            this.label_timeduration.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_timeduration.Location = new System.Drawing.Point(277, 297);
+            this.label_timeduration.Name = "label_timeduration";
+            this.label_timeduration.Size = new System.Drawing.Size(242, 31);
+            this.label_timeduration.TabIndex = 4;
+            this.label_timeduration.Text = "5 hrs, 34 mins";
+            this.label_timeduration.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_timeduration.Visible = false;
             // 
             // label_pg1
             // 
@@ -146,19 +124,29 @@ namespace SynthUtil
             this.label_proc1b.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label_proc1b.Visible = false;
             // 
+            // label_timelabel
+            // 
+            this.label_timelabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_timelabel.Location = new System.Drawing.Point(236, 272);
+            this.label_timelabel.Name = "label_timelabel";
+            this.label_timelabel.Size = new System.Drawing.Size(325, 25);
+            this.label_timelabel.TabIndex = 9;
+            this.label_timelabel.Text = "Estimated time to completion:";
+            this.label_timelabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_timelabel.Visible = false;
+            // 
             // Form_Processing
             // 
             this.AcceptButton = this.button_ok;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 404);
+            this.Controls.Add(this.label_timelabel);
             this.Controls.Add(this.label_proc1b);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label_proc1);
             this.Controls.Add(this.label_pg1);
-            this.Controls.Add(this.label_pg2);
-            this.Controls.Add(this.progressBar2);
-            this.Controls.Add(this.label_proc2);
+            this.Controls.Add(this.label_timeduration);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button_ok);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -177,13 +165,12 @@ namespace SynthUtil
 
         private System.Windows.Forms.Button button_ok;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label_proc2;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.ProgressBar progressBar2;
-        private System.Windows.Forms.Label label_pg2;
+        private System.Windows.Forms.Label label_timeduration;
         private System.Windows.Forms.Label label_pg1;
         private System.Windows.Forms.Label label_proc1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label_proc1b;
+        private System.Windows.Forms.Label label_timelabel;
     }
 }

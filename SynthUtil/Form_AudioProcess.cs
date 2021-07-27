@@ -120,12 +120,17 @@ namespace SynthUtil
 
         private void IndexCompleted_DoProcessing()
         {
+            //Enable Abort Button
+            button_abort.Enabled = true;
             //Run Worker2 after delay
             ProgramTools.Delayed(350, () => backgroundWorker2_Processing.RunWorkerAsync());
         }
 
         private void backgroundWorker2_Processing_DoWork(object sender, DoWorkEventArgs e)
         {
+            //Initialize timer for time estimate
+            var timer = new EtcCalculator(getFiles.Count - 1);
+
             for (int i = 0; i < (getFiles.Count); i++)
             {
                 string outFullPath = calcOutputFile[i];
@@ -148,9 +153,13 @@ namespace SynthUtil
 
                 //Report File Index
                 string fileIndex = i.ToString();
+                //Report EST time (converted)
+                string estTime = ProgramTools.TimeConvertHM(timer.GetEtc(i+1));
+                string estDuration = ProgramTools.TimeConvertDuration(timer.GetEtc(i+1));
+
                 //Creates report to userstate
                 //Array order: Current Word, Current Line, Changed Lines, Cum Lines, 
-                string[] reportStrArr = new string[1] {fileIndex};
+                string[] reportStrArr = new string[3] { fileIndex, estTime, estDuration };
                 //Reports Progress
                 backgroundWorker2_Processing.ReportProgress(0, reportStrArr);
             }
@@ -161,6 +170,8 @@ namespace SynthUtil
             //Parse UserState
             string[] us_arr = (string[])e.UserState;
             int fileIndex = Int32.Parse(us_arr[0]);
+            string estTime = us_arr[1];
+            string estDuration = us_arr[2];
 
             //Calculates percentage and updates elements
             int percentage = ProgramTools.IntToPerc(fileIndex, getFiles.Count);
@@ -168,7 +179,8 @@ namespace SynthUtil
 
             //Updates bar
             progressBar1.Value = percentage;
-            label_pg1.Text = e.ProgressPercentage + "%";
+            label_pg1.Text = percentage + "%";
+            label_pg1.Visible = true;
             label_proc1.Text = "Processing Audio Files... " + fileIndex + @"/" + getFiles.Count;
             label_proc1.Visible = true;
 
@@ -178,8 +190,15 @@ namespace SynthUtil
             textboxPath.SelectionStart = textboxPath.Text.Length;
             textboxPath.SelectionLength = 0;
 
-            //Calc MELS for every percent of progress
-            if (currentPercentage < percentage)
+            //Time Estimate
+            label_timedata.Text = estTime;
+            label_durationdata.Text = estDuration;
+            label_timelabel.Visible = true;
+            label_durationdata.Visible = true;
+            label_timedata.Visible = true;
+
+            //Calc MELS for every percent of progress OR if this is the first run
+            if ( (currentPercentage < percentage) || (fileIndex == 0) )
             {
                 CalcMELBox1(getFiles[fileIndex]);
                 CalcMELBox2(calcOutputFile[fileIndex]);
@@ -192,6 +211,12 @@ namespace SynthUtil
         {
             progressBar1.Value = progressBar1.Maximum;
             label_pg1.Text = 100 + @"%";
+
+            //Time Estimate
+            label_timelabel.Visible = false;
+            label_timedata.Visible = false;
+
+            //Update UI
             this.Update();
 
             MessageBox.Show("Processing Complete.", "SynthUtil - Audio Processor", MessageBoxButtons.OK, MessageBoxIcon.Information);

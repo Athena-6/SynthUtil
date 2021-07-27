@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="SynthUtil.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <System.Windows.Forms.ApplicationConfigurationSection>
+        <add key="DpiAwareness" value="PerMonitorV2" />
+    </System.Windows.Forms.ApplicationConfigurationSection>
+  
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.7.2" />
+    </startup>
+  
+    <userSettings>
+        <SynthUtil.Properties.Settings>
+            <setting name="proc_voiceid" serializeAs="String">
+                <value>voice_id</value>
+            </setting>
+            <setting name="proc_text" serializeAs="String">
+                <value>text</value>
+            </setting>
+            <setting name="t2ck_DelBetweenSymb" serializeAs="String">
+                <value>False</value>
+            </setting>
+            <setting name="t2ck_DelSingleSymb" serializeAs="String">
+                <value>False</value>
+            </setting>
+            <setting name="t2ck_Symb1" serializeAs="String">
+                <value>False</value>
+            </setting>
+            <setting name="t2ck_Symb2" serializeAs="String">
+                <value>False</value>
+            </setting>
+            <setting name="t2ck_Symb3" serializeAs="String">
+                <value>False</value>
+            </setting>
+            <setting name="t2ck_Symb4" serializeAs="String">
+                <value>False</value>
+            </setting>
+            <setting name="t2ck_Symb5" serializeAs="String">
+                <value>False</value>
+            </setting>
+            <setting name="t2ck_Symb6" serializeAs="String">
+                <value>False</value>
+            </setting>
+            <setting name="t2ck_CustomWordReplace" serializeAs="String">
+                <value>False</value>
+            </setting>
+            <setting name="t2ck_DelEmptyText" serializeAs="String">
+                <value>False</value>
+            </setting>
+            <setting name="t2ck_DelEmptyVT" serializeAs="String">
+                <value>False</value>
+            </setting>
+            <setting name="t2ck_SortVoiceID" serializeAs="String">
+                <value>False</value>
+            </setting>
+        </SynthUtil.Properties.Settings>
+    </userSettings>
+</configuration>

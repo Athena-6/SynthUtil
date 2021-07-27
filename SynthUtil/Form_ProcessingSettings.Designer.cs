@@ -33,12 +33,13 @@ namespace SynthUtil
             this.button_ok = new System.Windows.Forms.Button();
             this.button_cancel = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button_ok
             // 
-            this.button_ok.Location = new System.Drawing.Point(238, 375);
+            this.button_ok.Location = new System.Drawing.Point(238, 384);
             this.button_ok.Name = "button_ok";
             this.button_ok.Size = new System.Drawing.Size(140, 45);
             this.button_ok.TabIndex = 0;
@@ -49,7 +50,7 @@ namespace SynthUtil
             // button_cancel
             // 
             this.button_cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button_cancel.Location = new System.Drawing.Point(426, 375);
+            this.button_cancel.Location = new System.Drawing.Point(425, 384);
             this.button_cancel.Name = "button_cancel";
             this.button_cancel.Size = new System.Drawing.Size(140, 45);
             this.button_cancel.TabIndex = 1;
@@ -60,12 +61,22 @@ namespace SynthUtil
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(51, 31);
+            this.dataGridView1.Location = new System.Drawing.Point(23, 57);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(695, 321);
+            this.dataGridView1.Size = new System.Drawing.Size(748, 309);
             this.dataGridView1.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(19, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(568, 24);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "You can also directly edit the WordReplace.csv within the app directory";
             // 
             // Form_ProcessingSettings
             // 
@@ -74,6 +85,7 @@ namespace SynthUtil
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button_cancel;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button_cancel);
             this.Controls.Add(this.button_ok);
@@ -84,6 +96,7 @@ namespace SynthUtil
             this.Text = "Word Replacement Settings";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -92,5 +105,6 @@ namespace SynthUtil
         private System.Windows.Forms.Button button_ok;
         private System.Windows.Forms.Button button_cancel;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label1;
     }
 }

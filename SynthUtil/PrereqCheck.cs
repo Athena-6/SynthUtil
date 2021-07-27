@@ -73,7 +73,7 @@ namespace SynthUtil
                 {
                     //Save operations
                     newDT.ToCSV(csvPath);
-                    MessageBox.Show("WR CSV Created");
+                    //MessageBox.Show("WR CSV Created");
                 }
                 catch (Exception ex1)
                 {

@@ -51,6 +51,9 @@ namespace SynthUtil
             this.label3 = new System.Windows.Forms.Label();
             this.button_ok = new System.Windows.Forms.Button();
             this.button_abort = new System.Windows.Forms.Button();
+            this.label_timelabel = new System.Windows.Forms.Label();
+            this.label_timedata = new System.Windows.Forms.Label();
+            this.label_durationdata = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -186,7 +189,7 @@ namespace SynthUtil
             // label_credits1
             // 
             this.label_credits1.AutoSize = true;
-            this.label_credits1.Location = new System.Drawing.Point(12, 567);
+            this.label_credits1.Location = new System.Drawing.Point(12, 629);
             this.label_credits1.Name = "label_credits1";
             this.label_credits1.Size = new System.Drawing.Size(263, 20);
             this.label_credits1.TabIndex = 16;
@@ -195,7 +198,7 @@ namespace SynthUtil
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 607);
+            this.label1.Location = new System.Drawing.Point(12, 669);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(390, 20);
             this.label1.TabIndex = 17;
@@ -204,17 +207,16 @@ namespace SynthUtil
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 587);
+            this.label2.Location = new System.Drawing.Point(12, 649);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(718, 20);
+            this.label2.Size = new System.Drawing.Size(417, 20);
             this.label2.TabIndex = 18;
-            this.label2.Text = "FSKview - High-resolution spectrograms for rendering frequency-shift keyed (FSK) " +
-    "signals in real time";
+            this.label2.Text = "FSKview - Frequency-shift keyed (FSK) signals in real time";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 627);
+            this.label3.Location = new System.Drawing.Point(12, 689);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(292, 20);
             this.label3.TabIndex = 19;
@@ -223,9 +225,9 @@ namespace SynthUtil
             // button_ok
             // 
             this.button_ok.Enabled = false;
-            this.button_ok.Location = new System.Drawing.Point(683, 627);
+            this.button_ok.Location = new System.Drawing.Point(683, 669);
             this.button_ok.Name = "button_ok";
-            this.button_ok.Size = new System.Drawing.Size(96, 30);
+            this.button_ok.Size = new System.Drawing.Size(96, 40);
             this.button_ok.TabIndex = 20;
             this.button_ok.Text = "Continue";
             this.button_ok.UseVisualStyleBackColor = true;
@@ -234,19 +236,56 @@ namespace SynthUtil
             // button_abort
             // 
             this.button_abort.Enabled = false;
-            this.button_abort.Location = new System.Drawing.Point(569, 627);
+            this.button_abort.Location = new System.Drawing.Point(569, 669);
             this.button_abort.Name = "button_abort";
-            this.button_abort.Size = new System.Drawing.Size(96, 30);
+            this.button_abort.Size = new System.Drawing.Size(96, 40);
             this.button_abort.TabIndex = 21;
             this.button_abort.Text = "Abort";
             this.button_abort.UseVisualStyleBackColor = true;
             this.button_abort.Click += new System.EventHandler(this.button_abort_Click);
             // 
+            // label_timelabel
+            // 
+            this.label_timelabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label_timelabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_timelabel.Location = new System.Drawing.Point(269, 548);
+            this.label_timelabel.Name = "label_timelabel";
+            this.label_timelabel.Size = new System.Drawing.Size(262, 30);
+            this.label_timelabel.TabIndex = 22;
+            this.label_timelabel.Text = "Estimated time to completion:";
+            this.label_timelabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label_timelabel.Visible = false;
+            // 
+            // label_timedata
+            // 
+            this.label_timedata.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_timedata.Location = new System.Drawing.Point(269, 600);
+            this.label_timedata.Name = "label_timedata";
+            this.label_timedata.Size = new System.Drawing.Size(262, 23);
+            this.label_timedata.TabIndex = 23;
+            this.label_timedata.Text = "1:23 PM";
+            this.label_timedata.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_timedata.Visible = false;
+            // 
+            // label_durationdata
+            // 
+            this.label_durationdata.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_durationdata.Location = new System.Drawing.Point(269, 576);
+            this.label_durationdata.Name = "label_durationdata";
+            this.label_durationdata.Size = new System.Drawing.Size(262, 23);
+            this.label_durationdata.TabIndex = 24;
+            this.label_durationdata.Text = "5 hrs, 34 mins";
+            this.label_durationdata.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_durationdata.Visible = false;
+            // 
             // Form_AudioProcess
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 678);
+            this.ClientSize = new System.Drawing.Size(800, 729);
+            this.Controls.Add(this.label_durationdata);
+            this.Controls.Add(this.label_timedata);
+            this.Controls.Add(this.label_timelabel);
             this.Controls.Add(this.button_abort);
             this.Controls.Add(this.button_ok);
             this.Controls.Add(this.label3);
@@ -299,5 +338,8 @@ namespace SynthUtil
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button_ok;
         private System.Windows.Forms.Button button_abort;
+        private System.Windows.Forms.Label label_timelabel;
+        private System.Windows.Forms.Label label_timedata;
+        private System.Windows.Forms.Label label_durationdata;
     }
 }

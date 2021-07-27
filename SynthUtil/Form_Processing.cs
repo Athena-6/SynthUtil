@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 using static SynthUtil.ProgramTools;
 
@@ -21,6 +22,10 @@ namespace SynthUtil
         //Word replacement data form from WordReplace.csv
         private DataTable wrData = new DataTable();
 
+        //Record of operations completed
+        private bool Opr1;
+        private bool Opr2;
+
         public Form_Processing()
         {
             InitializeComponent();
@@ -28,18 +33,22 @@ namespace SynthUtil
 
         private void Form_Processing_Load(object sender, EventArgs e)
         {
-            //Initialize textbox for output of console
-            //TextBoxWriter writer = new TextBoxWriter(textBox1);
-            //Console.SetOut(writer);
+            //Do Stuff
         }
 
         private void Form_Processing_Shown(object sender, EventArgs e)
         {
             Application.DoEvents();
 
+            UpdateDataFromTemp();
+
+            CSVProcessingMasterControl();
+        }
+
+        private void UpdateDataFromTemp()
+        {
             try
             {
-                //Read temp
                 dataSource.Clear();
                 dataSource = ProgramTools.ReadTempCSV().Copy();
             }
@@ -47,8 +56,6 @@ namespace SynthUtil
             {
                 MessageBox.Show("Error reading data for processing: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            CSVProcessingMasterControl(dataSource);
         }
 
         private void button_ok_Click(object sender, EventArgs e)
@@ -82,43 +89,49 @@ namespace SynthUtil
             }
         }
 
-        private void CSVProcessingMasterControl(DataTable inputDT)
+        private void CSVProcessingMasterControl()
         {
-            if (Properties.Settings.Default.t2ck_CustomWordReplace)
+            if (Properties.Settings.Default.t2ck_CustomWordReplace && !Opr1)
             {
+                //Set Flag
+                Opr1 = true;
+
                 //Attempt to read WordReplace.csv to local DataTable
                 if(ReadWordReplacements() == 1)
                 {
                     label_pg1.Text = "";
-                    label_pg2.Text = "";
+                    label_timeduration.Text = "";
                     label_proc1.Text = "";
                     label_proc1b.Text = "";
-                    label_proc2.Text = "";
                     label_pg1.Visible = true;
-                    label_pg2.Visible = true;
+                    label_timeduration.Visible = true;
                     label_proc1.Visible = true;
                     label_proc1b.Visible = true;
-                    label_proc2.Visible = true;
+                    //Time Labels
+                    label_timelabel.Text = "";
+                    label_timeduration.Text = "";
+                    label_timelabel.Visible = true;
+                    label_timeduration.Visible = true;
 
                     //Delayed Start
                     ProgramTools.Delayed(250, () => backgroundWorker1.RunWorkerAsync());
+                    return;
                 }
             }
 
-            if (Properties.Settings.Default.t2ck_SortVoiceID)
+            if (Properties.Settings.Default.t2ck_SortVoiceID && !Opr2)
             {
-                //Sorts table
+                //Update Datatable
+                UpdateDataFromTemp();
+                //Set Flag
+                Opr2 = true;
 
-                label_pg1.Text = "";
-                label_pg2.Text = "";
-                label_proc1.Text = "";
-                label_proc1b.Text = "";
-                label_proc2.Text = "";
+                progressBar1.Value = 0;
+                label_proc1.Text = "Sorting data by voice_id...";
+                label_proc1.Visible = true;
                 label_pg1.Visible = false;
-                label_pg2.Visible = false;
-                label_proc1.Visible = false;
+                label_timeduration.Visible = false;
                 label_proc1b.Visible = false;
-                label_proc2.Visible = false;
 
                 this.Cursor = Cursors.WaitCursor;
                 this.Update();
@@ -129,10 +142,11 @@ namespace SynthUtil
 
                 this.Cursor = Cursors.Default;
                 this.Update();
-
-                button_ok.Enabled = true;
-                MessageBox.Show("Operations Complete!");
             }
+
+            label_proc1.Text = "Complete.";
+            button_ok.Enabled = true;
+            MessageBox.Show("Operations Complete!");
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -143,13 +157,9 @@ namespace SynthUtil
             int countLinesProcessed = 0;
             //Count of Lines actually changed
             int countLinesChanged = 0;
-            //Count of cumulative lines
-            int countLinesCumulative = 0;
 
-
-            //Reset countLinesProcessed and countLinesChanged
-            countLinesProcessed = 0;
-            countLinesChanged = 0;
+            //Initialize timer for time estimate
+            var timer = new EtcCalculator(dataSource.Rows.Count - 1);
 
             //Repeats for every row in dataSource           
             foreach (DataRow drRow in dataSource.Rows)
@@ -180,13 +190,9 @@ namespace SynthUtil
                     string result = Regex.Replace(input, pattern, replace, RegexOptions.IgnoreCase);
 
                     drRow["text"] = result;
-
                     //Console.WriteLine("result: " + result);
-
-
                 }
 
-                countLinesCumulative++;
                 countLinesProcessed++;
 
                 //If line changed, increment countLinesChanged
@@ -196,10 +202,13 @@ namespace SynthUtil
                     countLinesChanged++;
                 }
 
+                //Report EST time (converted)
+                string estDuration = ProgramTools.TimeConvertDuration(timer.GetEtc(countLinesProcessed + 1));
+
                 //Creates report to userstate
-                int[] reportStrArr;
+                string[] reportStrArr;
                 //Array order: Current Word, Current Line, Changed Lines, Cum Lines, 
-                reportStrArr = new int[4] { countWR, countLinesProcessed, countLinesChanged, countLinesCumulative };
+                reportStrArr = new string[6] { countWR.ToString(), countLinesProcessed.ToString(), countLinesChanged.ToString(), initial, changed, estDuration };
 
                 backgroundWorker1.ReportProgress(0, reportStrArr);
             }
@@ -278,68 +287,55 @@ namespace SynthUtil
             //Statics
             int totalModWords = wrData.Rows.Count;
             int totalLines = dataSource.Rows.Count;
-            int totalLinesXWords = dataSource.Rows.Count * wrData.Rows.Count;
 
             //Parse UserState
-            int[] us_arr = (int[])e.UserState;
-            int countWR = us_arr[0];
-            int countLinesProcessed = us_arr[1];
-            int countLinesChanged = us_arr[2];
-            int countLinesCumulative = us_arr[3];
+            string[] us_arr = (string[])e.UserState;
+            int countWR = Convert.ToInt32(us_arr[0]);
+            int countLinesProcessed = Convert.ToInt32(us_arr[1]);
+            int countLinesChanged = Convert.ToInt32(us_arr[2]);;
+            string InitialLine = us_arr[3];
+            string ChangedLine = us_arr[4];
+            string estDuration = us_arr[5];
 
-            //Calculate percentages
+            //Print Lines by Condition if line changed
+            //If line changed, increment countLinesChanged
+            if (!(string.Equals(InitialLine, ChangedLine)))
+            {
+                //If Line different
+                string printres = string.Format("[Line {0}] [Changed] \"{1}\" -> \"{2}\"", countLinesProcessed, InitialLine, ChangedLine);
+                textBox1.AppendText(printres);
+                textBox1.AppendText(Environment.NewLine);
+            }
+
+            //Calculate percentages for bar 1
             int percent1 = ProgramTools.IntToPerc(countLinesProcessed, totalLines);
-            int percent2 = ProgramTools.IntToPerc(countWR, totalModWords);
-
             progressBar1.Value = percent1;
-            progressBar2.Value = percent2;
+
+            //Time labels
+            label_timelabel.Text = "Estimated time to completion:";
+            label_timeduration.Text = estDuration;
+
+            //Labels
             label_proc1.Text = "Processing Line " + countLinesProcessed + @"/" + totalLines;
             label_proc1b.Text = "Modified Lines: " + countLinesChanged;
             label_pg1.Text = percent1.ToString() + @"%";
-            label_proc2.Text = "Processing Word Replacements...";
-            label_pg2.Text = countWR + @"/" + totalModWords;
+            //label_timeduration.Text = countWR + @"/" + totalModWords;
             this.Update();
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             progressBar1.Value = 100;
-            progressBar2.Value = 100;
             label_pg1.Text = 100 + @"%";
-            label_pg2.Text = (wrData.Rows.Count) + @"/" + (wrData.Rows.Count);
+            label_timeduration.Text = (wrData.Rows.Count) + @"/" + (wrData.Rows.Count);
             this.Update();
 
             ProgramTools.WriteTempCSV(dataSource);
 
-            button_ok.Enabled = true;
-            MessageBox.Show("Operations Complete!");
+            CSVProcessingMasterControl();
             //Delayed Start
             //ProgramTools.Delayed(250, () => MessageBox.Show("Complete!"));
         }
-    }
 
-    class TextBoxWriter : TextWriter
-    {
-        // The control where we will write text.
-        private Control MyControl;
-        public TextBoxWriter(Control control)
-        {
-            MyControl = control;
-        }
-
-        public override void Write(char value)
-        {
-            MyControl.Text += value;
-        }
-
-        public override void Write(string value)
-        {
-            MyControl.Text += value;
-        }
-
-        public override Encoding Encoding
-        {
-            get { return Encoding.Unicode; }
-        }
     }
 }

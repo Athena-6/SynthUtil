@@ -102,5 +102,56 @@ namespace SynthUtil
             };
             timer.Start();
         }
+
+        //Converts DateTime to hours:minutes AM/PM
+        public static string TimeConvertHM(System.DateTime dtInput)
+        {
+            //Calculate duration for determining which type of date to display
+            TimeSpan duration = dtInput - DateTime.Now;
+
+            string asString = null;
+
+            if (duration.TotalHours > 24.0)
+            {
+                asString = dtInput.ToString("MM/dd hh:mm tt");
+            }
+            else if (duration.TotalHours < 24.0)
+            {
+                asString = dtInput.ToString("hh:mm tt");
+            }
+
+            return asString;
+        }
+
+        //Converts DateTime to hours:minutes:seconds
+        public static string TimeConvertDuration(System.DateTime dtInput)
+        {
+            TimeSpan duration = dtInput - DateTime.Now;
+
+            string result;
+
+            if (duration.TotalHours >= 24.0)
+            {
+                result = (duration.TotalDays.ToString() + " days");
+            }
+            else if ( (duration.TotalHours >= 1.0) && (duration.TotalHours < 24.0) )
+            {
+                result = string.Format("{0:D2} hours, {1:D2} mins", duration.Hours, duration.Minutes);
+            }
+            else if ((duration.TotalMinutes >= 1.0) && (duration.TotalHours < 1.0) )
+            {
+                result = string.Format("{0:D2} mins", duration.Minutes);
+            }
+            else if (duration.TotalMinutes < 1.0)
+            {
+                result = string.Format("{0:D2} seconds", duration.Seconds);
+            }
+            else
+            {
+                throw new Exception("Error in Processing Time Estimation.");
+            }
+
+            return result;
+        }
     }
 }

@@ -643,6 +643,7 @@ namespace SynthUtil
             {
                 MessageBox.Show("Error saving settings: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            UpdateProcessButtonState();
         }
 
         private void checkBox_t2_proc2_CheckedChanged(object sender, EventArgs e)
@@ -656,6 +657,15 @@ namespace SynthUtil
             {
                 MessageBox.Show("Error saving settings: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            UpdateProcessButtonState();
+        }
+
+        private void UpdateProcessButtonState()
+        {
+            bool c1 = Properties.Settings.Default.t2ck_CustomWordReplace;
+            bool c2 = Properties.Settings.Default.t2ck_SortVoiceID;
+
+            button2_ProcessData.Enabled = (c1 || c2);
         }
 
         private void button_t3_1_Click(object sender, EventArgs e)
@@ -723,16 +733,28 @@ namespace SynthUtil
                 // Show testDialog as a modal dialog and determine if DialogResult = OK.
                 if (fDialog.ShowDialog(this) == DialogResult.OK)
                 {
-                    MessageBox.Show("OK!");
+                    MessageBox.Show("Data Processing Successful.");
                 }
                 else
                 {
-                    MessageBox.Show("Canceled.");
+                    MessageBox.Show("Operation Canceled.");
                 }
                 fDialog.Dispose();
-
-
             }
+        }
+
+        // ABOUT TAB
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkLabel1.LinkVisited = true;
+            System.Diagnostics.Process.Start("https://github.com/Athena-6/SynthUtil");
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkLabel1.LinkVisited = true;
+            System.Diagnostics.Process.Start("https://github.com/Athena-6/SynthUtil/blob/main/LICENSE");
         }
     }
 }
