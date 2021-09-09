@@ -91,6 +91,31 @@ namespace SynthUtil
             return output;
         }
 
+        //Load VoiceTypes CSV from Disk
+        public static DataTable ReadVoiceTypesCSV()
+        {
+            //Set target DataTable
+            DataTable output = new DataTable();
+            //Set application directory
+            String appPath = Directory.GetCurrentDirectory();
+            String csvPath = appPath + @"\VoiceTypes.csv";
+
+            //Creates object for ReadCSV Class
+            ReadCSV csv = new ReadCSV(csvPath);
+
+            try
+            {
+                //Populates with result
+                output = csv.DT_ReadCSV;
+            }
+            catch (Exception ex1)
+            {
+                MessageBox.Show("Error reading VoiceTypes.csv file : " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return output;
+        }
+
         //Timer delay
         public static void Delayed(int delay, Action action)
         {

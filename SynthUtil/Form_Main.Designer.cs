@@ -49,6 +49,7 @@ namespace SynthUtil
             this.textboxPath = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.checkBox_t2_setting1 = new System.Windows.Forms.CheckBox();
             this.checkBox_t2_proc1 = new System.Windows.Forms.CheckBox();
             this.checkBox_t2_proc2 = new System.Windows.Forms.CheckBox();
             this.textBox_lineCount = new System.Windows.Forms.TextBox();
@@ -63,6 +64,17 @@ namespace SynthUtil
             this.label4 = new System.Windows.Forms.Label();
             this.button2_load = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox_t3_3 = new System.Windows.Forms.TextBox();
+            this.label_t3_3 = new System.Windows.Forms.Label();
             this.button_t3_start = new System.Windows.Forms.Button();
             this.label_t3_2 = new System.Windows.Forms.Label();
             this.button_t3_2 = new System.Windows.Forms.Button();
@@ -71,29 +83,36 @@ namespace SynthUtil
             this.textBox_t3_1 = new System.Windows.Forms.TextBox();
             this.label_t3_1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label_t3_3 = new System.Windows.Forms.Label();
-            this.textBox_t3_3 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button_t4_start = new System.Windows.Forms.Button();
+            this.button_t4_browse = new System.Windows.Forms.Button();
+            this.textBox_t4 = new System.Windows.Forms.TextBox();
+            this.label_t4_textboxlabel = new System.Windows.Forms.Label();
+            this.label_t4_1 = new System.Windows.Forms.Label();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.checkBox_t5_4 = new System.Windows.Forms.CheckBox();
+            this.checkBox_t5_3 = new System.Windows.Forms.CheckBox();
+            this.checkBox_t5_2 = new System.Windows.Forms.CheckBox();
+            this.checkBox_t5_1 = new System.Windows.Forms.CheckBox();
+            this.button_t5_1 = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.tabPageA = new System.Windows.Forms.TabPage();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.checkBox_t5_5 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.tabPageA.SuspendLayout();
             this.SuspendLayout();
             // 
             // backgroundWorker1
@@ -123,6 +142,8 @@ namespace SynthUtil
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPageA);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -291,6 +312,7 @@ namespace SynthUtil
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.checkBox_t2_setting1);
             this.tabPage2.Controls.Add(this.checkBox_t2_proc1);
             this.tabPage2.Controls.Add(this.checkBox_t2_proc2);
             this.tabPage2.Controls.Add(this.textBox_lineCount);
@@ -310,6 +332,17 @@ namespace SynthUtil
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "CSV Editor";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_t2_setting1
+            // 
+            this.checkBox_t2_setting1.AutoSize = true;
+            this.checkBox_t2_setting1.Location = new System.Drawing.Point(664, 397);
+            this.checkBox_t2_setting1.Name = "checkBox_t2_setting1";
+            this.checkBox_t2_setting1.Size = new System.Drawing.Size(168, 25);
+            this.checkBox_t2_setting1.TabIndex = 49;
+            this.checkBox_t2_setting1.Text = "Performance Mode";
+            this.checkBox_t2_setting1.UseVisualStyleBackColor = true;
+            this.checkBox_t2_setting1.CheckedChanged += new System.EventHandler(this.checkBox_t2_setting1_CheckedChanged);
             // 
             // checkBox_t2_proc1
             // 
@@ -471,6 +504,113 @@ namespace SynthUtil
             this.tabPage3.Text = "CK .wav Preprocessing";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(563, 285);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(141, 21);
+            this.label10.TabIndex = 41;
+            this.label10.Text = "Highpass, Lowpass";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(564, 248);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(159, 34);
+            this.textBox2.TabIndex = 40;
+            this.textBox2.Text = "1500, 1 [Locked]";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(563, 224);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(103, 21);
+            this.label11.TabIndex = 39;
+            this.label11.Text = "BiQuad Filter:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(303, 285);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(46, 21);
+            this.label8.TabIndex = 38;
+            this.label8.Text = "(kHz)";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(304, 248);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(159, 34);
+            this.textBox1.TabIndex = 37;
+            this.textBox1.Text = "16 [Locked]";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(303, 224);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(148, 21);
+            this.label9.TabIndex = 36;
+            this.label9.Text = "Final Sampling Rate";
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Enabled = false;
+            this.radioButton2.Location = new System.Drawing.Point(401, 391);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(168, 25);
+            this.radioButton2.TabIndex = 35;
+            this.radioButton2.Text = "General Processing";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(401, 360);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(158, 25);
+            this.radioButton1.TabIndex = 34;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Preprocess for CK";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(31, 285);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(108, 21);
+            this.label7.TabIndex = 33;
+            this.label7.Text = "1 (Linear) - 60";
+            // 
+            // textBox_t3_3
+            // 
+            this.textBox_t3_3.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_t3_3.Location = new System.Drawing.Point(32, 248);
+            this.textBox_t3_3.Name = "textBox_t3_3";
+            this.textBox_t3_3.ReadOnly = true;
+            this.textBox_t3_3.Size = new System.Drawing.Size(159, 34);
+            this.textBox_t3_3.TabIndex = 32;
+            this.textBox_t3_3.Text = "60 [Locked]";
+            // 
+            // label_t3_3
+            // 
+            this.label_t3_3.AutoSize = true;
+            this.label_t3_3.Location = new System.Drawing.Point(31, 224);
+            this.label_t3_3.Name = "label_t3_3";
+            this.label_t3_3.Size = new System.Drawing.Size(163, 21);
+            this.label_t3_3.TabIndex = 31;
+            this.label_t3_3.Text = "Step Size / Resolution:";
+            // 
             // button_t3_start
             // 
             this.button_t3_start.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -551,146 +691,208 @@ namespace SynthUtil
             this.label5.TabIndex = 17;
             this.label5.Text = "Audio Preprocessing";
             // 
-            // label_t3_3
-            // 
-            this.label_t3_3.AutoSize = true;
-            this.label_t3_3.Location = new System.Drawing.Point(31, 224);
-            this.label_t3_3.Name = "label_t3_3";
-            this.label_t3_3.Size = new System.Drawing.Size(163, 21);
-            this.label_t3_3.TabIndex = 31;
-            this.label_t3_3.Text = "Step Size / Resolution:";
-            // 
-            // textBox_t3_3
-            // 
-            this.textBox_t3_3.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_t3_3.Location = new System.Drawing.Point(32, 248);
-            this.textBox_t3_3.Name = "textBox_t3_3";
-            this.textBox_t3_3.ReadOnly = true;
-            this.textBox_t3_3.Size = new System.Drawing.Size(159, 34);
-            this.textBox_t3_3.TabIndex = 32;
-            this.textBox_t3_3.Text = "60 [Locked]";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(31, 285);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(108, 21);
-            this.label7.TabIndex = 33;
-            this.label7.Text = "1 (Linear) - 60";
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(401, 360);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(158, 25);
-            this.radioButton1.TabIndex = 34;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Preprocess for CK";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Enabled = false;
-            this.radioButton2.Location = new System.Drawing.Point(401, 391);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(168, 25);
-            this.radioButton2.TabIndex = 35;
-            this.radioButton2.Text = "General Processing";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(303, 285);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(46, 21);
-            this.label8.TabIndex = 38;
-            this.label8.Text = "(kHz)";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(304, 248);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(159, 34);
-            this.textBox1.TabIndex = 37;
-            this.textBox1.Text = "16 [Locked]";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(303, 224);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(148, 21);
-            this.label9.TabIndex = 36;
-            this.label9.Text = "Final Sampling Rate";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(563, 285);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(141, 21);
-            this.label10.TabIndex = 41;
-            this.label10.Text = "Highpass, Lowpass";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Roboto", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(564, 248);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(159, 34);
-            this.textBox2.TabIndex = 40;
-            this.textBox2.Text = "1500, 1 [Locked]";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(563, 224);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(103, 21);
-            this.label11.TabIndex = 39;
-            this.label11.Text = "BiQuad Filter:";
-            // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.linkLabel2);
-            this.tabPage4.Controls.Add(this.label14);
-            this.tabPage4.Controls.Add(this.linkLabel1);
-            this.tabPage4.Controls.Add(this.label13);
-            this.tabPage4.Controls.Add(this.label12);
+            this.tabPage4.Controls.Add(this.label15);
+            this.tabPage4.Controls.Add(this.textBox3);
+            this.tabPage4.Controls.Add(this.button_t4_start);
+            this.tabPage4.Controls.Add(this.button_t4_browse);
+            this.tabPage4.Controls.Add(this.textBox_t4);
+            this.tabPage4.Controls.Add(this.label_t4_textboxlabel);
+            this.tabPage4.Controls.Add(this.label_t4_1);
             this.tabPage4.Location = new System.Drawing.Point(4, 30);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(944, 523);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "About";
+            this.tabPage4.TabIndex = 4;
+            this.tabPage4.Text = "File Monitor";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // label12
+            // label15
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(25, 14);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(79, 32);
-            this.label12.TabIndex = 18;
-            this.label12.Text = "About";
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(27, 175);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(189, 21);
+            this.label15.TabIndex = 37;
+            this.label15.Text = "Total Files for Completion:";
             // 
-            // label13
+            // textBox3
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(31, 56);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(236, 24);
-            this.label13.TabIndex = 25;
-            this.label13.Text = "Information and bug reports:";
+            this.textBox3.Font = new System.Drawing.Font("Roboto", 11F);
+            this.textBox3.Location = new System.Drawing.Point(31, 199);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(185, 37);
+            this.textBox3.TabIndex = 36;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            // 
+            // button_t4_start
+            // 
+            this.button_t4_start.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button_t4_start.Enabled = false;
+            this.button_t4_start.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_t4_start.Location = new System.Drawing.Point(401, 439);
+            this.button_t4_start.Name = "button_t4_start";
+            this.button_t4_start.Size = new System.Drawing.Size(144, 49);
+            this.button_t4_start.TabIndex = 35;
+            this.button_t4_start.Text = "Start Process";
+            this.button_t4_start.UseVisualStyleBackColor = true;
+            this.button_t4_start.Click += new System.EventHandler(this.button_t4_start_Click);
+            // 
+            // button_t4_browse
+            // 
+            this.button_t4_browse.Location = new System.Drawing.Point(747, 86);
+            this.button_t4_browse.Name = "button_t4_browse";
+            this.button_t4_browse.Size = new System.Drawing.Size(167, 41);
+            this.button_t4_browse.TabIndex = 34;
+            this.button_t4_browse.Text = "Browse";
+            this.button_t4_browse.UseVisualStyleBackColor = true;
+            this.button_t4_browse.Click += new System.EventHandler(this.button_t4_browse_Click);
+            // 
+            // textBox_t4
+            // 
+            this.textBox_t4.Font = new System.Drawing.Font("Roboto", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_t4.Location = new System.Drawing.Point(32, 89);
+            this.textBox_t4.Name = "textBox_t4";
+            this.textBox_t4.ReadOnly = true;
+            this.textBox_t4.Size = new System.Drawing.Size(691, 37);
+            this.textBox_t4.TabIndex = 33;
+            // 
+            // label_t4_textboxlabel
+            // 
+            this.label_t4_textboxlabel.AutoSize = true;
+            this.label_t4_textboxlabel.Location = new System.Drawing.Point(28, 65);
+            this.label_t4_textboxlabel.Name = "label_t4_textboxlabel";
+            this.label_t4_textboxlabel.Size = new System.Drawing.Size(191, 21);
+            this.label_t4_textboxlabel.TabIndex = 32;
+            this.label_t4_textboxlabel.Text = "Choose Folder / Directory:";
+            // 
+            // label_t4_1
+            // 
+            this.label_t4_1.AutoSize = true;
+            this.label_t4_1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_t4_1.Location = new System.Drawing.Point(25, 14);
+            this.label_t4_1.Name = "label_t4_1";
+            this.label_t4_1.Size = new System.Drawing.Size(233, 32);
+            this.label_t4_1.TabIndex = 31;
+            this.label_t4_1.Text = "File Change Monitor";
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.checkBox_t5_5);
+            this.tabPage5.Controls.Add(this.checkBox_t5_4);
+            this.tabPage5.Controls.Add(this.checkBox_t5_3);
+            this.tabPage5.Controls.Add(this.checkBox_t5_2);
+            this.tabPage5.Controls.Add(this.checkBox_t5_1);
+            this.tabPage5.Controls.Add(this.button_t5_1);
+            this.tabPage5.Controls.Add(this.label16);
+            this.tabPage5.Location = new System.Drawing.Point(4, 30);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(944, 523);
+            this.tabPage5.TabIndex = 5;
+            this.tabPage5.Text = "Voice Models";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_t5_4
+            // 
+            this.checkBox_t5_4.AutoSize = true;
+            this.checkBox_t5_4.Location = new System.Drawing.Point(31, 239);
+            this.checkBox_t5_4.Name = "checkBox_t5_4";
+            this.checkBox_t5_4.Size = new System.Drawing.Size(152, 25);
+            this.checkBox_t5_4.TabIndex = 41;
+            this.checkBox_t5_4.Text = "Exclude Creature";
+            this.checkBox_t5_4.UseVisualStyleBackColor = true;
+            this.checkBox_t5_4.CheckedChanged += new System.EventHandler(this.checkBox_t5_4_CheckedChanged);
+            // 
+            // checkBox_t5_3
+            // 
+            this.checkBox_t5_3.AutoSize = true;
+            this.checkBox_t5_3.Location = new System.Drawing.Point(31, 191);
+            this.checkBox_t5_3.Name = "checkBox_t5_3";
+            this.checkBox_t5_3.Size = new System.Drawing.Size(178, 25);
+            this.checkBox_t5_3.TabIndex = 40;
+            this.checkBox_t5_3.Text = "Exclude Non-Unique";
+            this.checkBox_t5_3.UseVisualStyleBackColor = true;
+            this.checkBox_t5_3.CheckedChanged += new System.EventHandler(this.checkBox_t5_3_CheckedChanged);
+            // 
+            // checkBox_t5_2
+            // 
+            this.checkBox_t5_2.AutoSize = true;
+            this.checkBox_t5_2.Location = new System.Drawing.Point(31, 143);
+            this.checkBox_t5_2.Name = "checkBox_t5_2";
+            this.checkBox_t5_2.Size = new System.Drawing.Size(142, 25);
+            this.checkBox_t5_2.TabIndex = 39;
+            this.checkBox_t5_2.Text = "Exclude Unqiue";
+            this.checkBox_t5_2.UseVisualStyleBackColor = true;
+            this.checkBox_t5_2.CheckedChanged += new System.EventHandler(this.checkBox_t5_2_CheckedChanged);
+            // 
+            // checkBox_t5_1
+            // 
+            this.checkBox_t5_1.AutoSize = true;
+            this.checkBox_t5_1.Location = new System.Drawing.Point(31, 95);
+            this.checkBox_t5_1.Name = "checkBox_t5_1";
+            this.checkBox_t5_1.Size = new System.Drawing.Size(120, 25);
+            this.checkBox_t5_1.TabIndex = 38;
+            this.checkBox_t5_1.Text = "Exclude DLC";
+            this.checkBox_t5_1.UseVisualStyleBackColor = true;
+            this.checkBox_t5_1.CheckedChanged += new System.EventHandler(this.checkBox_t5_1_CheckedChanged);
+            // 
+            // button_t5_1
+            // 
+            this.button_t5_1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button_t5_1.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_t5_1.Location = new System.Drawing.Point(401, 439);
+            this.button_t5_1.Name = "button_t5_1";
+            this.button_t5_1.Size = new System.Drawing.Size(144, 49);
+            this.button_t5_1.TabIndex = 37;
+            this.button_t5_1.Text = "Generate";
+            this.button_t5_1.UseVisualStyleBackColor = true;
+            this.button_t5_1.Click += new System.EventHandler(this.button_t5_1_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(25, 14);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(391, 32);
+            this.label16.TabIndex = 36;
+            this.label16.Text = "Generate list of voice models/types";
+            // 
+            // tabPageA
+            // 
+            this.tabPageA.Controls.Add(this.linkLabel2);
+            this.tabPageA.Controls.Add(this.label14);
+            this.tabPageA.Controls.Add(this.linkLabel1);
+            this.tabPageA.Controls.Add(this.label13);
+            this.tabPageA.Controls.Add(this.label12);
+            this.tabPageA.Location = new System.Drawing.Point(4, 30);
+            this.tabPageA.Name = "tabPageA";
+            this.tabPageA.Size = new System.Drawing.Size(944, 523);
+            this.tabPageA.TabIndex = 3;
+            this.tabPageA.Text = "About";
+            this.tabPageA.UseVisualStyleBackColor = true;
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Font = new System.Drawing.Font("Roboto", 9F);
+            this.linkLabel2.Location = new System.Drawing.Point(31, 435);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(269, 24);
+            this.linkLabel2.TabIndex = 29;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "GNU General Public License v3.0";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(31, 459);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(140, 24);
+            this.label14.TabIndex = 27;
+            this.label14.Text = "© 2021 Athena6";
             // 
             // linkLabel1
             // 
@@ -704,27 +906,36 @@ namespace SynthUtil
             this.linkLabel1.Text = "https://github.com/Athena-6/SynthUtil";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // label14
+            // label13
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(31, 459);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(140, 24);
-            this.label14.TabIndex = 27;
-            this.label14.Text = "© 2021 Athena6";
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(31, 56);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(236, 24);
+            this.label13.TabIndex = 25;
+            this.label13.Text = "Information and bug reports:";
             // 
-            // linkLabel2
+            // label12
             // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Font = new System.Drawing.Font("Roboto", 9F);
-            this.linkLabel2.Location = new System.Drawing.Point(31, 435);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(269, 24);
-            this.linkLabel2.TabIndex = 29;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "GNU General Public License v3.0";
-            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(25, 14);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(79, 32);
+            this.label12.TabIndex = 18;
+            this.label12.Text = "About";
+            // 
+            // checkBox_t5_5
+            // 
+            this.checkBox_t5_5.AutoSize = true;
+            this.checkBox_t5_5.Location = new System.Drawing.Point(31, 287);
+            this.checkBox_t5_5.Name = "checkBox_t5_5";
+            this.checkBox_t5_5.Size = new System.Drawing.Size(152, 25);
+            this.checkBox_t5_5.TabIndex = 42;
+            this.checkBox_t5_5.Text = "Exclude Non-Hifi";
+            this.checkBox_t5_5.UseVisualStyleBackColor = true;
+            this.checkBox_t5_5.CheckedChanged += new System.EventHandler(this.checkBox_t5_5_CheckedChanged);
             // 
             // form_main
             // 
@@ -748,6 +959,10 @@ namespace SynthUtil
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            this.tabPageA.ResumeLayout(false);
+            this.tabPageA.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -805,12 +1020,29 @@ namespace SynthUtil
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabPageA;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button button_t4_start;
+        private System.Windows.Forms.Button button_t4_browse;
+        private System.Windows.Forms.TextBox textBox_t4;
+        private System.Windows.Forms.Label label_t4_textboxlabel;
+        private System.Windows.Forms.Label label_t4_1;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.CheckBox checkBox_t2_setting1;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.CheckBox checkBox_t5_4;
+        private System.Windows.Forms.CheckBox checkBox_t5_3;
+        private System.Windows.Forms.CheckBox checkBox_t5_2;
+        private System.Windows.Forms.CheckBox checkBox_t5_1;
+        private System.Windows.Forms.Button button_t5_1;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.CheckBox checkBox_t5_5;
     }
 }
 

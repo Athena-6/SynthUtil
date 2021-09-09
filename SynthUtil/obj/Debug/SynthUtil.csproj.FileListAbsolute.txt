@@ -42,3 +42,5 @@ C:\VS_source\repos\SynthUtilApp\SynthUtil\bin\Debug\Microsoft.Win32.Registry.xml
 C:\VS_source\repos\SynthUtilApp\SynthUtil\bin\Debug\NAudio.xml
 C:\VS_source\repos\SynthUtilApp\SynthUtil\bin\Debug\System.Security.AccessControl.xml
 C:\VS_source\repos\SynthUtilApp\SynthUtil\bin\Debug\System.Security.Principal.Windows.xml
+C:\VS_source\repos\SynthUtilApp\SynthUtil\obj\Debug\SynthUtil.Form_FolderMonitor.resources
+C:\VS_source\repos\SynthUtilApp\SynthUtil\obj\Debug\SynthUtil.Form_VTGenerator.resources

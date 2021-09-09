@@ -187,14 +187,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SynthUtil.exe" size="1430496">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SynthUtil.exe" size="1442272">
       <assemblyIdentity name="SynthUtil" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>mGOwzG2mGMsFVxkSJfDqcWf+tJPTIAi9Yp0BL/10dkg=</dsig:DigestValue>
+        <dsig:DigestValue>bpA7OetgcyuVnAoSyBzcHdfob38EnMd30gv2l8VbkwE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -273,13 +273,13 @@
       <dsig:DigestValue>EToKE8kh/Wm2k2euFZ0fbtmoiv0J6GRIxI2rOBVsU18=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="SynthUtil.exe.config" size="2774">
+  <file name="SynthUtil.exe.config" size="2901">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>IKwWeFZvT9BbGxkUMmy8y5hG4GRWmynShf2lHisOr6U=</dsig:DigestValue>
+      <dsig:DigestValue>2U4BQFcPngRDbd2vq5SXqlQpg18vXCA8njBQTSFvkbw=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">

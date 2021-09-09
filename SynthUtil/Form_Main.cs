@@ -51,6 +51,11 @@ namespace SynthUtil
         private bool SourcePathLoaded;
         private bool OutputPathLoaded;
 
+        //Tab 4 Vars
+        private bool t4DirectorySet;
+        private bool t4FileNumSet;
+        private string t4Path;
+
         public form_main()
         {
             // Test if required .dll present
@@ -86,7 +91,7 @@ namespace SynthUtil
 
         private void StateUpdate()
         {
-            if(stage1confirm == true)
+            if (stage1confirm == true)
             {
                 button2.Enabled = true;
                 textboxConfirm.Enabled = true;
@@ -308,8 +313,10 @@ namespace SynthUtil
                 filesIndex++;
                 double process = GetSoundLength(arrItem);
                 int wavL = (int)Math.Ceiling(process);
+                Console.WriteLine("double: " + process.ToString());
+                Console.WriteLine("int: " + wavL);
 
-                if (wavL <= 30 && wavL > 0)
+                if (wavL <= 30 && wavL >= 1)
                 {
                     wavLength.Add(wavL);
                 }
@@ -319,11 +326,10 @@ namespace SynthUtil
                 }
                 else if (wavL <= 0)
                 {
-                    wavLength.Add(5);
+                    wavLength.Add(1);
                 }
 
-                int percentage = ProgramTools.IntToPerc(filesIndex, getFiles.Count);
-                Console.WriteLine(percentage);
+                int percentage = ProgramTools.IntDiv_rDown(filesIndex, getFiles.Count);
                 backgroundWorker2.ReportProgress(percentage);
             }
         }
@@ -332,6 +338,7 @@ namespace SynthUtil
         {
             progressBar1.Value = e.ProgressPercentage;
             label_process.Text = "Calculating Audio Durations... " + e.ProgressPercentage + "%";
+            this.Update();
         }
 
         private void backgroundWorker2_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -369,6 +376,7 @@ namespace SynthUtil
         {
             progressBar2.Value = e.ProgressPercentage;
             label_process.Text = "Generating Files... " + e.ProgressPercentage + "%";
+            this.Update();
         }
 
         private void backgroundWorker3_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -380,7 +388,7 @@ namespace SynthUtil
         {
             Form_FileValidate f2Dialog = new Form_FileValidate();
             f2Dialog.setFolderPath(suFolderPath);
-            
+
             // Show testDialog as a modal dialog and determine if DialogResult = OK.
             if (f2Dialog.ShowDialog(this) == DialogResult.OK)
             {
@@ -410,10 +418,10 @@ namespace SynthUtil
 
         private void checkBox_overwrite_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBox_overwrite.Checked == true)
+            if (checkBox_overwrite.Checked == true)
             {
                 setting_Overwrite = true;
-            } 
+            }
             else
             {
                 setting_Overwrite = false;
@@ -487,7 +495,7 @@ namespace SynthUtil
                     this.Enabled = false;
 
                     //Load operations
-                    LoadCSV(suCSVPath);     
+                    LoadCSV(suCSVPath);
                 }
                 catch (Exception ex1)
                 {
@@ -660,6 +668,19 @@ namespace SynthUtil
             UpdateProcessButtonState();
         }
 
+        private void checkBox_t2_setting1_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Properties.Settings.Default.t2ck_PerfMode = checkBox_t2_setting1.Checked;
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception ex1)
+            {
+                MessageBox.Show("Error saving settings: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void UpdateProcessButtonState()
         {
             bool c1 = Properties.Settings.Default.t2ck_CustomWordReplace;
@@ -687,7 +708,7 @@ namespace SynthUtil
                     //Set Flag
                     SourcePathLoaded = true;
                     button_t3_2.Enabled = true;
-                } 
+                }
             }
             catch (Exception ex1)
             {
@@ -741,6 +762,157 @@ namespace SynthUtil
                 }
                 fDialog.Dispose();
             }
+        }
+
+        //TAB 4, Folder Monitor
+
+        private void button_t4_browse_Click(object sender, EventArgs e)
+        {
+            // Open Folder Dialog
+            try
+            {
+                CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+                dialog.RestoreDirectory = true;
+                dialog.IsFolderPicker = true;
+                if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    //Load var and textbox
+                    t4Path = dialog.FileName;
+                    textBox_t4.Text = dialog.FileName;
+                    //Track to end of textbox
+                    textBox_t3_1.SelectionStart = textBox_csvPath.Text.Length;
+                    textBox_t3_1.SelectionLength = 0;
+                    //Set Flag
+                    t4DirectorySet = true;
+                    checkt4Status();
+                }
+            }
+            catch (Exception ex1)
+            {
+                MessageBox.Show("Error browsing for folder: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox3.TextLength > 0)
+            {
+                t4FileNumSet = true;
+                checkt4Status();
+            }
+        }
+
+        private void checkt4Status()
+        {
+            if (t4DirectorySet && t4FileNumSet)
+            {
+                button_t4_start.Enabled = true;
+            }
+        }
+
+        private void button_t4_start_Click(object sender, EventArgs e)
+        {
+            //Calls Dialog, sets paths
+            Form_FolderMonitor fDialog = new Form_FolderMonitor();
+            fDialog.SetPaths(t4Path, textBox3.Text);
+
+            if (fDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                //
+            }
+            else
+            {
+                //
+            }
+            fDialog.Dispose();
+        }
+
+        // Voice Types TAB 5
+
+        private void checkBox_t5_1_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Properties.Settings.Default.vm_e_DLC = checkBox_t5_1.Checked;
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception ex1)
+            {
+                MessageBox.Show("Error saving settings: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            UpdateProcessButtonState();
+        }
+
+        private void checkBox_t5_2_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Properties.Settings.Default.vm_e_Unique = checkBox_t5_2.Checked;
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception ex1)
+            {
+                MessageBox.Show("Error saving settings: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            UpdateProcessButtonState();
+        }
+
+        private void checkBox_t5_3_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Properties.Settings.Default.vm_e_NonUnique = checkBox_t5_3.Checked;
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception ex1)
+            {
+                MessageBox.Show("Error saving settings: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            UpdateProcessButtonState();
+        }
+
+        private void checkBox_t5_4_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Properties.Settings.Default.vm_e_Creature = checkBox_t5_4.Checked;
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception ex1)
+            {
+                MessageBox.Show("Error saving settings: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            UpdateProcessButtonState();
+        }
+
+        private void checkBox_t5_5_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Properties.Settings.Default.vm_e_NonHifi = checkBox_t5_5.Checked;
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception ex1)
+            {
+                MessageBox.Show("Error saving settings: " + ex1, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            UpdateProcessButtonState();
+        }
+
+        private void button_t5_1_Click(object sender, EventArgs e)
+        {
+            //Calls Dialog
+            Form_VTGenerator fDialog = new Form_VTGenerator();
+
+            if (fDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                //
+            }
+            else
+            {
+                //
+            }
+            fDialog.Dispose();
         }
 
         // ABOUT TAB

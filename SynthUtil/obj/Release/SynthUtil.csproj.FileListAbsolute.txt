@@ -42,3 +42,4 @@ C:\VS_source\repos\SynthUtilApp\SynthUtil\obj\Release\SynthUtil.Form_ProcessingS
 C:\VS_source\repos\SynthUtilApp\SynthUtil\obj\Release\SynthUtil.form_main.resources
 C:\VS_source\repos\SynthUtilApp\SynthUtil\obj\Release\SynthUtil.Form_FileValidate.resources
 C:\VS_source\repos\SynthUtilApp\SynthUtil\obj\Release\SynthUtil.Form_Tab2Settings.resources
+C:\VS_source\repos\SynthUtilApp\SynthUtil\obj\Release\SynthUtil.Form_FolderMonitor.resources

@@ -26,6 +26,9 @@ namespace SynthUtil
         private bool Opr1;
         private bool Opr2;
 
+        //Stores current line
+        private string currentLine = "";
+
         public Form_Processing()
         {
             InitializeComponent();
@@ -173,24 +176,18 @@ namespace SynthUtil
                 {
                     countWR++;
                     string input = drRow["text"].ToString();
-                    string pattern;
-                    //Uses regex if not blank
-                    if (wrRow["source_regex_override"] != null && !string.IsNullOrEmpty(wrRow["source_regex_override"].ToString()))
-                    {
-                        pattern = wrRow["source_regex_override"].ToString();
-                    }
-                    //Use regex-fied source if regex override is blank
-                    else
+                    //Uses regex override at first
+                    string pattern = wrRow["source_regex_override"]?.ToString();
+                    //If regex override is blank, use regex-fied source
+                    if (String.IsNullOrEmpty(pattern))
                     {
                         string wr_source = wrRow["source"].ToString();
                         pattern = @"\b" + wr_source + @"\b";
-                        //Console.WriteLine("pattern: " + pattern);
                     }
                     string replace = wrRow["change_to"].ToString();
                     string result = Regex.Replace(input, pattern, replace, RegexOptions.IgnoreCase);
 
                     drRow["text"] = result;
-                    //Console.WriteLine("result: " + result);
                 }
 
                 countLinesProcessed++;
@@ -208,7 +205,7 @@ namespace SynthUtil
                 //Creates report to userstate
                 string[] reportStrArr;
                 //Array order: Current Word, Current Line, Changed Lines, Cum Lines, 
-                reportStrArr = new string[6] { countWR.ToString(), countLinesProcessed.ToString(), countLinesChanged.ToString(), initial, changed, estDuration };
+                reportStrArr = new string[6] {countWR.ToString(), countLinesProcessed.ToString(), countLinesChanged.ToString(), initial, changed, estDuration};
 
                 backgroundWorker1.ReportProgress(0, reportStrArr);
             }
@@ -240,25 +237,19 @@ namespace SynthUtil
                     // drRow["Comments"] = drRow["Comments"].ToString().Replace('*', '\n');
 
                     string input = drRow["text"].ToString();
-                    string pattern;
-                    //Uses regex if not blank
-                    if ( wrRow["source_regex_override"] != null && !string.IsNullOrEmpty(wrRow["source_regex_override"].ToString()) )
-                    {
-                        pattern = wrRow["source_regex_override"].ToString();
-                    }
-                    //Use regex-fied source if regex override is blank
-                    else
+
+                    //Uses regex override at first
+                    string pattern = wrRow["source_regex_override"]?.ToString();
+                    //If regex override is blank, use regex-fied source
+                    if (String.IsNullOrEmpty(pattern))
                     {
                         string wr_source = wrRow["source"].ToString();
                         pattern = @"\b" + wr_source + @"\b";
-                        //Console.WriteLine("pattern: " + pattern);
                     }
                     string replace = wrRow["change_to"].ToString();
                     string result = Regex.Replace(input, pattern, replace, RegexOptions.IgnoreCase);
 
                     drRow["text"] = result;
-
-                    //Console.WriteLine("result: " + result);
 
                     //If line changed, increment countLinesChanged
                     if ( !(string.Equals(input, result)) )
@@ -276,8 +267,7 @@ namespace SynthUtil
 
                     backgroundWorker1.ReportProgress(0, reportStrArr);
                 }
-                //Wait for stuff to update
-                Thread.Sleep(1000);
+
             }
 
         }
@@ -297,9 +287,20 @@ namespace SynthUtil
             string ChangedLine = us_arr[4];
             string estDuration = us_arr[5];
 
+            //Whether to print line into textbox
+            bool DoPrint = false;
+
+            //Checks if current stored line is different with stream line
+            if (!String.Equals(currentLine, InitialLine))
+            {
+                //For different (new line)
+                currentLine = InitialLine;
+                DoPrint = true;
+            }
+
             //Print Lines by Condition if line changed
-            //If line changed, increment countLinesChanged
-            if (!(string.Equals(InitialLine, ChangedLine)))
+            //If line changed AND DoPrint is true AND global setting is true, increment countLinesChanged 
+            if (!(string.Equals(InitialLine, ChangedLine)) && DoPrint && !Properties.Settings.Default.t2ck_PerfMode)
             {
                 //If Line different
                 string printres = string.Format("[Line {0}] [Changed] \"{1}\" -> \"{2}\"", countLinesProcessed, InitialLine, ChangedLine);
